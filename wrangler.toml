@@ -28,3 +28,7 @@ directory = "./dist"
 binding = "ASSETS"
 not_found_handling = "single-page-application"   # direct links like /conference-cabins open the app
 run_worker_first = ["/api/*"]                    # only /api/* runs the Worker code
+
+# Keep logs so email errors can be seen under Observability in the dashboard.
+[observability]
+enabled = true
