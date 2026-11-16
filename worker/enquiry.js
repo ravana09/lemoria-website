@@ -1,10 +1,10 @@
-// Cloudflare Pages Function: POST /api/enquiry
+// Cloudflare Worker handler for POST /api/enquiry
 // Same behaviour as the Node server (server/api.js): validates the form, emails Lemoria, and sends the visitor
 // a confirmation. Sends through SMTP (e.g. Gmail) using worker-mailer, which works on Cloudflare.
-// Settings come from the Pages project: Settings > Variables and Secrets (same names as .env).
+// Settings come from the Worker: Settings > Variables and Secrets (same names as .env).
 import { WorkerMailer } from 'worker-mailer';
-import { MAX_BODY, validate } from '../../server/validate.js';
-import { buildCustomerEmail, buildOwnerEmail, oneLine, receivedAt } from '../../server/templates.js';
+import { MAX_BODY, validate } from '../server/validate.js';
+import { buildCustomerEmail, buildOwnerEmail, oneLine, receivedAt } from '../server/templates.js';
 
 const RATE = { windowMs: 10 * 60 * 1000, max: 5 }; // per visitor IP, per running instance
 const hits = new Map();
@@ -28,7 +28,8 @@ function parseAddress(value, fallbackEmail) {
   return { name: 'Lemoria', email: (value || fallbackEmail || '').trim() };
 }
 
-export async function onRequestPost({ request, env }) {
+export async function handleEnquiry(request, env) {
+  if (request.method !== 'POST') return json(405, { ok: false, error: 'Method not allowed' });
   const configured = Boolean(env.SMTP_HOST && env.SMTP_USER && env.SMTP_PASS && env.MAIL_TO);
   const dryRun = env.MAIL_DRY_RUN === 'true';
   if (!configured && !dryRun) return json(503, { ok: false, error: 'Email is not configured on the server yet. Please call us instead.' });
@@ -83,5 +84,3 @@ export async function onRequestPost({ request, env }) {
     try { await mailer?.close(); } catch { /* already closed */ }
   }
 }
-
-export const onRequest = () => json(405, { ok: false, error: 'Method not allowed' });

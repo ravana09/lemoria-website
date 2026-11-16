@@ -18,22 +18,27 @@ React + Vite front end; enquiry and booking forms email Lemoria and send the vis
 |---|---|---|
 | `npm run dev` / `npm run preview` | `server/api.js` + `server/mail.js` (Nodemailer) | `.env` |
 | Any Node host (`npm run build` then `npm start`) | `server/index.js` | `.env` |
-| Cloudflare Pages | `functions/api/enquiry.js` (worker-mailer) | Cloudflare dashboard variables |
+| Cloudflare Workers | `worker/index.js` + `worker/enquiry.js` (worker-mailer) | Cloudflare dashboard variables |
 
 Email templates (`server/templates.js`) and form checks (`server/validate.js`) are shared, so every host sends identical emails.
 
-## Deploy to Cloudflare Pages
+## Deploy to Cloudflare (Workers)
+
+The site deploys as a Cloudflare Worker with static assets: Cloudflare serves `dist/` directly and runs
+`worker/index.js` only for `/api/*` (the email). Settings are in `wrangler.toml`.
 
 1. Push this repository to GitHub (never commit `.env` or `.dev.vars`; both are in `.gitignore`).
-2. Cloudflare dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → choose `lemoria-website`.
-3. Build settings: Framework preset **None** (or Vite) · Build command **`npm run build`** · Build output directory **`dist`**.
-4. **Settings → Variables and Secrets** (Production), add the same values as `.env`:
+2. Cloudflare dashboard → **Workers & Pages** → your Worker → **Settings → Build**:
+   Build command **`npm run build`** · Deploy command **`npx wrangler deploy`** · Branch **`main`**.
+3. **Settings → Variables and Secrets**, add the same values as `.env`:
    `MAIL_TO`, `MAIL_FROM`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, and `SMTP_PASS` (type **Secret**).
-5. **Deploy**, then retry the deployment after adding variables so the function picks them up.
+   `keep_vars = true` in `wrangler.toml` keeps them across deploys.
+4. Every push to `main` rebuilds and deploys automatically.
 
 Test the Cloudflare version locally (uses `.dev.vars`, test mode, sends nothing):
 
-    npx wrangler pages dev dist
+    npm run build
+    npx wrangler dev
 
 ## Before launch
 

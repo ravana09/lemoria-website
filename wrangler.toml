@@ -1,8 +1,19 @@
-# Cloudflare Pages settings for the Lemoria website.
-# Build command: npm run build   ·   Build output directory: dist
-# Email settings (SMTP_*, MAIL_*) are NOT stored here: add them in the Cloudflare dashboard under
+# Cloudflare Workers settings for the Lemoria website.
+# Cloudflare build:  Build command  npm run build   ·   Deploy command  npx wrangler deploy
+#
+# Email settings (MAIL_*, SMTP_*) are NOT stored here: add them in the Cloudflare dashboard under
 # Workers & Pages > lemoria-website > Settings > Variables and Secrets (SMTP_PASS as a Secret).
-name = "lemoria-website"
-pages_build_output_dir = "dist"
+name = "lemoria-website"            # must match the Worker name in the Cloudflare dashboard
+main = "worker/index.js"            # handles /api/enquiry (the email)
 compatibility_date = "2025-09-01"
 compatibility_flags = ["nodejs_compat"]
+
+# Keep the variables you add in the dashboard when a new version is deployed.
+keep_vars = true
+
+# The website files built by Vite.
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+not_found_handling = "single-page-application"   # direct links like /conference-cabins open the app
+run_worker_first = ["/api/*"]                    # only /api/* runs the Worker code
