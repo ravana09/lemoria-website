@@ -4,7 +4,7 @@
 export const SITE = {
   name: 'Lemoria',
   tagline: 'Beyond Numbers',
-  phone: '+91 98765 43210', // TODO: real phone number (also update server/mail.js)
+  phone: '+91 98765 43210', // TODO: real phone number (also update server/templates.js)
   email: 'lemoriacoworks@gmail.com',
   address: 'No. 1 to 2, Rajagopal Street, Nehru Nagar East, Coimbatore South, Coimbatore, Tamil Nadu 641014',
   street: 'No. 1 to 2, Rajagopal Street, Nehru Nagar East, Coimbatore South',
