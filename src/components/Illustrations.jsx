@@ -183,3 +183,62 @@ export function BookingArt({ className = '' }) {
     </Svg>
   );
 }
+
+/* Small illustrations for the stats bar on the home page (seats, private offices, focus cabins, hours).
+   Each sits on a soft gold circle. `name` matches the stat's icon in data.js. */
+export function StatArt({ name, className = '' }) {
+  const glow = <circle cx="40" cy="46" r="30" fill="#F6DDB4" opacity=".75" />;
+  const art = {
+    // desk chair
+    chair: (
+      <>
+        <rect x="27" y="10" width="26" height="30" rx="9" fill="#2A2622" />
+        <rect x="30" y="13" width="20" height="22" rx="7" fill="#3A342E" />
+        <rect x="22" y="40" width="36" height="9" rx="4.5" fill="#2A2622" />
+        <path d="M22 34 v10 M58 34 v10" stroke="#2A2622" strokeWidth="3.5" strokeLinecap="round" />
+        <rect x="38" y="49" width="4" height="13" fill="#2A2622" />
+        <path d="M24 67 L40 61 L56 67 M40 61 V69" stroke="#2A2622" strokeWidth="3" strokeLinecap="round" fill="none" />
+        <circle cx="24" cy="69" r="2.6" fill="#2A2622" /><circle cx="56" cy="69" r="2.6" fill="#2A2622" /><circle cx="40" cy="71" r="2.6" fill="#2A2622" />
+      </>
+    ),
+    // office building
+    door: (
+      <>
+        <rect x="18" y="14" width="32" height="56" fill="#E0B57C" stroke="#2A2622" strokeWidth="2" />
+        <rect x="50" y="30" width="16" height="40" fill="#C99A5E" stroke="#2A2622" strokeWidth="2" />
+        <path d="M18 14 h32 v-4 h-32 Z" fill="#2A2622" />
+        {[0, 1, 2, 3, 4, 5].map((r) => [0, 1, 2].map((c) => <rect key={`${r}${c}`} x={22 + c * 9} y={19 + r * 8} width="6" height="5" fill="#3A332B" />))}
+        {[0, 1, 2, 3].map((r) => <rect key={r} x="55" y={35 + r * 8} width="6" height="5" fill="#3A332B" />)}
+        <rect x="30" y="62" width="8" height="8" fill="#2A2622" />
+        <path d="M12 70 h60" stroke="#2A2622" strokeWidth="2.5" strokeLinecap="round" />
+      </>
+    ),
+    // focus booth: a glass cabin with a chair inside
+    lock: (
+      <>
+        <rect x="24" y="8" width="32" height="62" rx="3" fill="#EEF2F2" stroke="#2A2622" strokeWidth="3" />
+        <rect x="24" y="8" width="32" height="7" fill="#2A2622" />
+        <path d="M30 18 v48" stroke="#C9D3D4" strokeWidth="2" />
+        <rect x="34" y="40" width="12" height="12" rx="3" fill="#2A2622" />
+        <rect x="32" y="52" width="16" height="4" rx="2" fill="#2A2622" />
+        <path d="M40 56 v8 M35 66 h10" stroke="#2A2622" strokeWidth="2" strokeLinecap="round" />
+        <circle cx="52" cy="40" r="1.8" fill="#2A2622" />
+        <path d="M21 70 h38" stroke="#2A2622" strokeWidth="2.5" strokeLinecap="round" />
+      </>
+    ),
+    // calendar with a clock
+    clock: (
+      <>
+        <rect x="12" y="16" width="42" height="40" rx="5" fill="#FFFFFF" stroke="#B5873A" strokeWidth="2.5" />
+        <path d="M12 21 a5 5 0 0 1 5 -5 h32 a5 5 0 0 1 5 5 v6 h-42 Z" fill="#E0A84E" />
+        <rect x="21" y="11" width="4" height="10" rx="2" fill="#8E6420" /><rect x="41" y="11" width="4" height="10" rx="2" fill="#8E6420" />
+        {[0, 1, 2].map((r) => [0, 1, 2, 3].map((c) => <rect key={`${r}${c}`} x={17 + c * 8.5} y={32 + r * 7} width="5" height="4" rx="1" fill="#F3D3A0" />))}
+        <circle cx="54" cy="54" r="14" fill="#F0C27B" stroke="#8E6420" strokeWidth="2.5" />
+        <path d="M54 46 V54 L60 57" stroke="#2A2622" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+      </>
+    ),
+  }[name];
+  return (
+    <svg className={className} viewBox="0 0 80 80" aria-hidden="true" focusable="false">{glow}{art}</svg>
+  );
+}

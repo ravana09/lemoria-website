@@ -72,7 +72,7 @@ export default function Header() {
       <div className="hd-bar">
         <div className="container hd-in">
           <Nav items={NAV.slice(0, 3)} />
-          <Link to="/" aria-label={`${SITE.name} home`} className="hd-logo"><Logo size={38} /></Link>
+          <Link to="/" aria-label={`${SITE.name} home`} className="hd-logo"><Logo size={44} tone="original" /></Link>
           <div className="hd-right">
             <Nav items={NAV.slice(3)} />
             <Link to="/contact" className="btn btn-primary btn-sm">Get in touch</Link>

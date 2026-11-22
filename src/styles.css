@@ -143,7 +143,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .info-list small { display: block; color: var(--muted); font-size: 14px; }
 .info-list a, .info-list span { font-weight: 700; color: var(--ink); }
 .ct1-in { display: grid; grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: start; }
-@media (max-width: 900px) { .ct1-in { grid-template-columns: 1fr; gap: 40px; } }
+@media (max-width: 900px) { .ct1-in { grid-template-columns: 1fr; gap: 40px; } .ct1-in > :last-child { order: -1; } } /* phones: the form first, then the details */
 
 /* ============ SECTION 8 — FOOTER ============ */
 .ft { padding: 70px 0 0; border-top: 1px solid var(--line); background: #fff; }

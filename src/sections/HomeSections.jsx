@@ -6,7 +6,7 @@ import Sec from '../components/Sec.jsx';
 import { BgVideo, LoopVideo } from '../components/Video.jsx';
 import QuickEnquiry from '../components/QuickEnquiry.jsx';
 import MapFrame from '../components/MapFrame.jsx';
-import { AMENITIES, HOME, MAP_LINK, SITE, SPACES, TOUR_LINK, VIDEOS, WA_LINK } from '../data.js';
+import { AMENITIES, HOME, MAP_LINK, SITE, SPACES, VIDEOS } from '../data.js';
 
 const CARDS = ['workspace', 'private-cabins', 'conference-cabins', 'day-pass', 'virtual-office'].map((id) => SPACES[id]);
 const pad = (i) => String(i + 1).padStart(2, '0');
@@ -37,10 +37,6 @@ export function Hero() {
           <h1>{h.title} <span className="hv-accent">{h.accent}</span></h1>
           <p>{h.text}</p>
           <ul className="hv-points">{h.points.map((pt) => <li key={pt}><Icon name="check" size={18} />{pt}</li>)}</ul>
-          <div className="btns">
-            <Link to={TOUR_LINK} className="btn btn-primary">Book a tour</Link>
-            <a href={WA_LINK} target="_blank" rel="noreferrer" className="btn btn-white"><Icon name="whatsapp" size={18} /> WhatsApp us</a>
-          </div>
         </div>
         <QuickEnquiry />
       </div>
@@ -101,10 +97,6 @@ export function Tour() {
         <div className="tour4-copy">
           <Title kicker="A closer look" title={t.title} text={t.text} />
           <ul className="tour4-facts">{TOUR_FACTS.map((f) => <li key={f}><Icon name="check" size={16} />{f}</li>)}</ul>
-          <div className="btns">
-            <Link to={TOUR_LINK} className="btn btn-primary">Book a tour</Link>
-            <Link to="/gallery" className="btn btn-outline">View gallery</Link>
-          </div>
         </div>
       </div>
     </Sec>
@@ -137,7 +129,6 @@ export function Steps() {
       <div className="container">
         <Title center light kicker={s.kicker} title={s.title} />
         <ol className="stp4-list">{HOME.steps.map((st, i) => <li key={st.title}><span>{pad(i)}</span><div><h3>{st.title}</h3><p>{st.text}</p></div></li>)}</ol>
-        <div className="center"><Link to={TOUR_LINK} className="btn btn-primary">Book your tour</Link></div>
       </div>
     </Sec>
   );

@@ -4,7 +4,7 @@ import Icon from '../components/Icon.jsx';
 import { ArtBanner, CtaBand, Head, Num } from '../components/Blocks.jsx';
 import { TeamArt } from '../components/Illustrations.jsx';
 import MapFrame from '../components/MapFrame.jsx';
-import { ABOUT, HOME, IMG, MAP_LINK, SITE, TOUR_LINK } from '../data.js';
+import { ABOUT, HOME, IMG, MAP_LINK, SITE } from '../data.js';
 
 const FACTS = HOME.stats.slice(0, 3);
 const MV = [
@@ -18,8 +18,7 @@ export default function About() {
       {/* Illustrated banner */}
       <ArtBanner crumb="About" title="About Lemoria Luxe" art={TeamArt}
         text="Premium coworking and managed offices on Avinashi Road, Coimbatore. A calm, beautifully finished place for founders, professionals and growing teams.">
-        <Link to={TOUR_LINK} className="btn btn-primary">Book a tour</Link>
-        <Link to="/contact" className="btn btn-outline">Get in touch</Link>
+        <Link to="/contact" className="btn btn-primary">Get in touch</Link>
       </ArtBanner>
 
       {/* Our story: heading on the left; words and key figures on the right */}

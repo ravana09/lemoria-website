@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Icon from '../components/Icon.jsx';
 import { ArtBanner, CtaBand, Head } from '../components/Blocks.jsx';
 import { LoungeArt } from '../components/Illustrations.jsx';
-import { AMENITIES, TOUR_LINK, WA_LINK } from '../data.js';
+import { AMENITIES, WA_LINK } from '../data.js';
 
 // The 16 amenities from the floor plan, in three groups.
 const byName = Object.fromEntries(AMENITIES);
@@ -12,7 +12,7 @@ const GROUPS = [
   { title: 'Comfort',
     items: ['Pantry', 'Vending machine', 'Lockers', 'Washrooms'] },
   { title: 'Building & tech',
-    items: ['Lift', 'Whiteboards', 'Server room', 'High-speed Wi-Fi'] },
+    items: ['Lift', 'Whiteboards', 'Server room', 'High-speed Wi-Fi','Bike Parking'] },
 ].map((g) => ({ ...g, items: g.items.filter((n) => byName[n]).map((n) => [n, byName[n]]) }));
 
 const TITLE = 'Premium amenities at Lemoria Luxe, Coimbatore';
@@ -41,8 +41,7 @@ export default function Amenities() {
     <>
       <ArtBanner crumb="Amenities" title="Amenities" art={LoungeArt}
         text="Every detail, thoughtfully taken care of. Private offices, focus cabins, a conference room and a calm lounge, all in one premium space.">
-        <Link to={TOUR_LINK} className="btn btn-primary">Book a tour</Link>
-        <a href={WA_LINK} target="_blank" rel="noreferrer" className="btn btn-outline"><Icon name="whatsapp" size={18} /> WhatsApp us</a>
+        <a href={WA_LINK} target="_blank" rel="noreferrer" className="btn btn-primary"><Icon name="whatsapp" size={18} /> WhatsApp us</a>
       </ArtBanner>
       <List />
       <CtaBand />

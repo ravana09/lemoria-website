@@ -151,8 +151,6 @@
 .qe-f input, .qe-f select { font: inherit; font-size: 15px; padding: 12px 13px; border: 1px solid #D9D4CA; border-radius: 9px; background: #fff; color: var(--text); width: 100%; }
 .qe-f input:focus, .qe-f select:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 22%, transparent); }
 .qe .err { font-size: 13px; }
-.qe-alt { text-align: center; font-size: 13px; color: var(--muted); }
-.qe-alt a { color: var(--gold-dark); font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
 .qe-done { text-align: center; justify-items: center; padding: 40px 28px; }
 .qe-done p { color: var(--muted); }
 
@@ -291,3 +289,17 @@ h3 { font-weight: 600; letter-spacing: -.005em; }
 .tour4-facts li { display: flex; align-items: center; gap: 12px; color: var(--ink); font-weight: 500; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
 .tour4-facts .ic { color: var(--gold); }
 @media (max-width: 900px) { .tour4 { grid-template-columns: 1fr; gap: 56px; } .tour4-frame::before { inset: 14px -10px -14px 10px; } }
+
+/* ---------- Navbar: same dark background as the footer ---------- */
+.hd-bar { background: var(--ink); border-bottom-color: rgba(255, 255, 255, .08); }
+.nav > a, .nav-dd > button { color: #E8E3D8; }
+.nav > a:hover, .nav-dd > button:hover, .nav > a.active, .nav-dd > button.active { color: var(--gold-light); }
+.burger { background: transparent; border-color: rgba(255, 255, 255, .22); }
+.burger span { background: #fff; }
+@media (max-width: 1000px) {
+  .is-open .mnav { background: var(--ink); border-top-color: rgba(255, 255, 255, .08); }
+  .mnav > a:not(.btn), .mnav-group > span { color: #fff; border-bottom-color: rgba(255, 255, 255, .1); }
+  .mnav-group { border-bottom-color: rgba(255, 255, 255, .1); }
+  .mnav-group a { color: #B7B4AD; }
+  .mnav-group a .ic { color: var(--gold-light); }
+}

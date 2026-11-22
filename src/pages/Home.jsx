@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { CtaBand } from '../components/Blocks.jsx';
+import { StatArt } from '../components/Illustrations.jsx';
 import { Amenities, Hero, Location, Personas, Spaces, Steps, Tour } from '../sections/HomeSections.jsx';
 import { HOME } from '../data.js';
 
@@ -38,14 +39,20 @@ export default function Home() {
       {/* Stats (approximate figures): a white card overlapping the hero */}
       <section className="stats" id="sec-stats" aria-label="Lemoria Luxe at a glance">
         <div className="container stats-in">
-          {HOME.stats.map((s) => <div key={s.l}><CountUp value={s.n} /><span className="st-l">{s.l}</span></div>)}
+          {HOME.stats.map((s) => (
+            <div key={s.l}>
+              <StatArt name={s.icon} className="st-art" />
+              <CountUp value={s.n} />
+              <span className="st-l">{s.l}</span>
+            </div>
+          ))}
         </div>
       </section>
 
       <Spaces />
+      <Amenities />
       <Personas />
       <Tour />
-      <Amenities />
       <Steps />
       <Location />
       <CtaBand />

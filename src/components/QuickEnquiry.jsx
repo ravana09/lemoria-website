@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { submitEnquiry } from '../api.js';
-import { SITE, WA_LINK } from '../data.js';
 import Icon from './Icon.jsx';
 
 const NEEDS = ['Book a tour', 'Seats by the chair', 'Private cabin', 'Conference cabin', 'Day pass', 'Virtual office'];
@@ -42,7 +41,6 @@ export default function QuickEnquiry() {
       <div className="hp" aria-hidden="true"><input tabIndex={-1} autoComplete="off" value={f.website} onChange={set('website')} /></div>
       {err && <p className="err" role="alert">{err}</p>}
       <button className="btn btn-primary block" type="submit" disabled={state === 'sending'}>{state === 'sending' ? 'Sending…' : 'Request a call back'}</button>
-      <p className="qe-alt">or <a href={WA_LINK} target="_blank" rel="noreferrer"><Icon name="whatsapp" size={16} /> WhatsApp us</a> · <a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phone}</a></p>
     </form>
   );
 }

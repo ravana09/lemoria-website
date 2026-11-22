@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Img from '../components/Img.jsx';
 import Icon from '../components/Icon.jsx';
 import { CtaBand, Head, Num } from '../components/Blocks.jsx';
-import { SPACES, TOUR_LINK, WA_LINK } from '../data.js';
+import { SPACES, WA_LINK } from '../data.js';
 
 const Crumb = ({ title, dark }) => <div className={`crumb ${dark ? 'crumb-dark' : ''}`}><Link to="/">Home</Link> / {title}</div>;
 const Facts = ({ s }) => (
@@ -11,7 +11,6 @@ const Facts = ({ s }) => (
 const Ctas = ({ s }) => (
   <div className="btns">
     <Link to={s.cta.to} className="btn btn-primary">{s.cta.label}</Link>
-    <Link to={TOUR_LINK} className="btn btn-outline">Book a tour</Link>
   </div>
 );
 
