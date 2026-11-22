@@ -1,4 +1,4 @@
-# Cloudflare Workers settings for the Lemoria website.
+# Cloudflare Workers settings for the Lemoria Luxe website.
 # Cloudflare build:  Build command  npm run build   ·   Deploy command  npx wrangler deploy
 #
 # Email: the public settings are in [vars] below. The two private ones must be added as runtime SECRETS
@@ -17,7 +17,7 @@ keep_vars = true
 # Public email settings (safe to keep in the code).
 [vars]
 MAIL_TO = "lemoriacoworks@gmail.com"
-MAIL_FROM = "Lemoria <lemoriacoworks@gmail.com>"
+MAIL_FROM = "Lemoria Luxe <lemoriacoworks@gmail.com>"
 SMTP_HOST = "smtp.gmail.com"
 SMTP_PORT = "465"
 SMTP_SECURE = "true"

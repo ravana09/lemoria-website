@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { SITE, WORKSPACE_MENU } from '../data.js';
+import { GMAIL_LINK, MAP_LINK, SITE, WORKSPACE_MENU } from '../data.js';
 import Icon from './Icon.jsx';
 import Logo from './Logo.jsx';
 import FooterArt from './FooterArt.jsx';
@@ -16,18 +16,21 @@ export default function Footer() {
         <div className="container">
           <div className="ft-grid">
             <div className="ft-brand">
-              <Logo size={40} />
-              <p>Lemoria is a premium co-working space in Nehru Nagar East, Coimbatore. Book a single chair, seats for your whole company, a private cabin or a conference cabin by the hour, all with fast Wi-Fi, refreshments and a professional address.</p>
+              <Logo size={44} tone="original" />
+              <p>Premium coworking and managed offices on Avinashi Road, Coimbatore.</p>
               <p className="ft-hours"><Icon name="clock" size={16} />{SITE.hours}</p>
             </div>
-            <div><h4>Company</h4><Link to="/about">About us</Link><Link to="/amenities">Amenities</Link><Link to="/gallery">Gallery</Link><Link to="/memberships">Memberships</Link></div>
-            <div><h4>Workspace</h4>{WORKSPACE_MENU.slice(0, 5).map((m) => <Link key={m.to} to={m.to}>{m.title}</Link>)}</div>
-            <div><h4>Support</h4><Link to="/contact">Contact</Link><Link to="/book">Book now</Link><a href="#">Privacy policy</a><a href="#">Terms</a></div>
+            <div><h4>Workspaces</h4>{WORKSPACE_MENU.slice(0, 5).map((m) => <Link key={m.to} to={m.to}>{m.title}</Link>)}</div>
+            <div><h4>Lemoria Luxe</h4><Link to="/about">About</Link><Link to="/amenities">Amenities</Link>
+            {/* <Link to="/plans">Plans</Link>
+            <Link to="/gallery">Gallery</Link> */}
+            <Link to="/faq">FAQ</Link></div>
+            <div><h4>Help</h4><Link to="/contact">Contact</Link><Link to="/book">Book online</Link><a href="#">Privacy policy</a></div>
             <div className="f-contact">
               <h4>Contact</h4>
-              <a href={tel}><Icon name="phone" size={16} />{SITE.phone}</a>
-              <a href={`mailto:${SITE.email}`}><Icon name="mail" size={16} />{SITE.email}</a>
-              <p><Icon name="pin" size={16} />{SITE.address}</p>
+              <a href={tel} aria-label={`Call ${SITE.phone}`}><Icon name="phone" size={16} />{SITE.phone}</a>
+              <a href={GMAIL_LINK} target="_blank" rel="noreferrer" aria-label={`Email ${SITE.email} in Gmail`}><Icon name="mail" size={16} />{SITE.email}</a>
+              <a href={MAP_LINK} target="_blank" rel="noreferrer" aria-label="Open our location in Google Maps"><Icon name="pin" size={16} />{SITE.address}</a>
             </div>
           </div>
           <div className="f-bottom">

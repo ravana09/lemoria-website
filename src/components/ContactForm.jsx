@@ -4,7 +4,7 @@ import { SITE } from '../data.js';
 
 export const WORKSPACE_TYPES = ['Seats by the chair', 'Team seats (company)', 'Conference cabin', 'Private cabin', 'Day pass', 'Virtual office', 'Book a tour', 'General enquiry', 'Not sure yet'];
 
-// Sends the enquiry to the server, which emails Lemoria and sends the visitor a confirmation email.
+// Sends the enquiry to the server, which emails Lemoria Luxe and sends the visitor a confirmation email.
 export default function ContactForm({ preset = '', title, className = '' }) {
   const [form, setForm] = useState({ name: '', email: '', phone: '', type: WORKSPACE_TYPES.includes(preset) ? preset : WORKSPACE_TYPES[0], message: '', website: '' });
   const [errors, setErrors] = useState({});

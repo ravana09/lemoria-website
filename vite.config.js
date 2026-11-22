@@ -13,7 +13,14 @@ function enquiryApi(env) {
   return { name: 'lemoria-enquiry-api', configureServer: mount, configurePreviewServer: mount };
 }
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode, isSsrBuild }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  return { plugins: [react(), enquiryApi(env)] };
+  return {
+    plugins: [react(), enquiryApi(env)],
+    // The server bundle only needs JS, not a second copy of /public.
+    build: { copyPublicDir: !isSsrBuild },
+    // Build output and Cloudflare's local cache are not source: don't watch them
+    // (on Windows, watching files that a build is rewriting crashes the dev server with EBUSY).
+    server: { watch: { ignored: ['**/dist/**', '**/dist-server/**', '**/.wrangler/**'] } },
+  };
 });

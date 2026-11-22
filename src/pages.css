@@ -1,0 +1,135 @@
+/* Inner pages: illustrated banner (About, Amenities, FAQ) and the chosen About sections. */
+
+.crumb-dark { color: var(--gold-dark); }
+.crumb-dark a { color: var(--muted); }
+
+/* ---------- Illustrated banner ---------- */
+.ib { position: relative; overflow: hidden; background: #fff; padding: 56px 0 0; }
+.ib-wave { position: absolute; left: 0; bottom: 0; width: 42%; height: 46%; fill: var(--soft); }
+.ib-in { position: relative; display: grid; grid-template-columns: .9fr 1.1fr; gap: 40px; align-items: end; }
+.ib-copy { align-self: center; padding-bottom: 56px; }
+.ib h1 { font-size: clamp(44px, 5.6vw, 76px); line-height: 1.02; }
+.ib-rule { display: block; width: 120px; height: 2px; background: var(--gold); margin: 22px 0; }
+.ib p { color: var(--muted); font-size: 17.5px; max-width: 460px; }
+.ib-art { display: block; width: 100%; height: auto; margin-right: -40px; animation: mediaIn 1.2s var(--ease-out) both .15s; }
+.ib-copy > * { animation: slideUp 1s var(--ease-out) both; }
+.ib-copy > :nth-child(2) { animation-delay: .08s; } .ib-copy > :nth-child(3) { animation-delay: .14s; }
+.ib-copy > :nth-child(4) { animation-delay: .2s; } .ib-copy > :nth-child(5) { animation-delay: .26s; }
+
+/* ---------- About: our story, with key figures ---------- */
+.abs4-in { display: grid; grid-template-columns: .9fr 1.1fr; gap: 72px; align-items: start; }
+.abs4-facts { list-style: none; padding: 26px 0 0; margin: 14px 0 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.abs4-facts li { display: flex; flex-direction: column; justify-content: flex-end; }
+.abs4-facts b { display: block; font-family: var(--serif); font-weight: 500; font-size: 44px; line-height: 1; color: var(--gold-dark); font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
+.abs4-facts span { color: var(--muted); font-size: 14px; }
+
+/* ---------- About: mission & vision on a photo ---------- */
+.abm4 { position: relative; padding: 120px 0; overflow: hidden; }
+.abm4-bg { position: absolute; inset: 0; }
+.abm4-shade { position: absolute; inset: 0; background: rgba(12, 10, 8, .55); }
+.abm4-in { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.abm4-card { background: rgba(255, 255, 255, .95); padding: 36px; border-radius: var(--radius); }
+.abm4-card h3 { margin: 16px 0 8px; font-size: 20px; }
+.abm4-card p { font-family: var(--serif); font-size: 26px; line-height: 1.25; color: var(--ink); }
+
+/* ---------- Amenities: three groups ---------- */
+.aml2 { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 48px; }
+.aml2-col h3 { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--serif); font-weight: 500; font-size: 30px; padding-bottom: 14px; border-bottom: 1px solid var(--gold); }
+.aml2-col h3 span { font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 600; color: var(--gold-dark); letter-spacing: .1em; }
+.aml2-col ul { list-style: none; padding: 0; margin: 0; }
+.aml2-col li { display: flex; align-items: center; gap: 12px; padding: 15px 0; border-bottom: 1px solid var(--line); color: var(--ink); font-weight: 500; }
+.aml2-col .ic { color: var(--gold); flex: none; }
+.aml2-col:first-child ul { display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px; }
+
+@media (max-width: 900px) {
+  .aml2 { grid-template-columns: 1fr; gap: 36px; }
+  .ib { padding-top: 36px; }
+  .ib-in { grid-template-columns: 1fr; gap: 8px; }
+  .ib-copy { padding-bottom: 0; }
+  .ib-art { margin: 0 auto; max-width: 520px; }
+  .ib-wave { width: 70%; height: 30%; }
+  .ib .btns .btn { flex: 1 1 auto; }
+  .abs4-in { grid-template-columns: 1fr; gap: 24px; }
+  .abs4-facts b { font-size: 34px; }
+  .abm4 { padding: 72px 0; }
+  .abm4-in { grid-template-columns: 1fr; }
+  .abm4-card { padding: 28px 22px; }
+}
+@media (max-width: 380px) { .aml2-col:first-child ul { grid-template-columns: 1fr; } }
+
+/* ---------- FAQ: questions ---------- */
+.faq summary { font-size: 17px; font-weight: 600; padding: 22px 0; }
+.faq summary::after { content: ''; flex: none; width: 26px; height: 26px; border: 1px solid color-mix(in srgb, var(--gold) 50%, transparent); border-radius: 50%;
+  background: linear-gradient(var(--gold-dark), var(--gold-dark)) center / 10px 1.5px no-repeat, linear-gradient(var(--gold-dark), var(--gold-dark)) center / 1.5px 10px no-repeat; transition: transform .3s var(--ease-out); }
+.faq details[open] summary::after { content: ''; transform: rotate(45deg); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:hover { color: var(--gold-dark); }
+.faq p { font-size: 16px; line-height: 1.7; padding-right: 40px; }
+
+/* help card */
+.fq-help { margin-top: 8px; padding: 30px 28px; background: var(--soft); border-radius: var(--radius); }
+.fq-help h3 { font-family: var(--serif); font-weight: 500; font-size: 28px; }
+.fq-help p { color: var(--muted); margin: 6px 0 20px; }
+.fq-help .btn { width: 100%; margin-bottom: 14px; }
+.fq-help-line { display: flex; align-items: center; gap: 10px; padding: 10px 0; color: var(--ink); font-weight: 500; border-top: 1px solid var(--line); overflow-wrap: anywhere; }
+.fq-help-line .ic { color: var(--gold); flex: none; }
+.fq-help-line:hover { color: var(--gold-dark); }
+
+/* FAQ layout: heading and help card on the left */
+.fq2 { display: grid; grid-template-columns: .8fr 1.2fr; gap: 72px; align-items: start; }
+.fq2-side { position: sticky; top: 110px; }
+.fq2 .faq { border-top: 1px solid var(--line); }
+@media (max-width: 900px) {
+  .fq2 { grid-template-columns: 1fr; gap: 28px; }
+  .fq2-side { display: contents; }
+  .fq2 .faq { order: 1; }
+  .fq2 .fq-help { order: 2; margin-top: 12px; }
+  .faq summary { font-size: 16px; }
+  .faq p { padding-right: 0; }
+}
+
+/* "about" above approximate figures (see <Num>) */
+.approx { display: block; font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; line-height: 1.2; }
+
+/* ---------- Workspaces: quick facts ---------- */
+.spx-facts { list-style: none; padding: 22px 0 0; margin: 26px 0 0; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 14px 40px; }
+.spx-facts li { display: flex; flex-direction: column; justify-content: flex-end; }
+.spx-facts b { display: block; font-family: var(--serif); font-weight: 500; font-size: 32px; line-height: 1; color: var(--gold-dark); font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
+.spx-facts span { font-size: 13px; color: var(--muted); }
+
+/* ---------- Workspaces: top banner ---------- */
+.spt4 { padding: 64px 0 0; background: var(--soft); text-align: center; }
+.spt4 h1 { font-size: clamp(42px, 5.6vw, 80px); line-height: 1.02; }
+.spt4 p { color: var(--muted); font-size: 18px; margin: 14px auto 0; max-width: 560px; }
+.spt4 .spx-facts { justify-content: center; border-top: 0; padding-top: 0; }
+.spt4-row { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 14px; margin-top: 44px; align-items: end; }
+.spt4-row.n2 { grid-template-columns: 1.4fr 1fr; }
+.spt4-row.n1 { grid-template-columns: 1fr; }
+.spt4-row .ph { aspect-ratio: 4 / 5; border-radius: var(--radius) var(--radius) 0 0; }
+.spt4-row .ph:nth-child(2) { aspect-ratio: 4 / 4.2; }
+.spt4-row.n3 .ph:nth-child(1), .spt4-row.n3 .ph:nth-child(3) { aspect-ratio: 4 / 4; }
+
+/* ---------- Other workspaces  ---------- */
+.spx-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 32px; }
+.spx-head .st { margin-bottom: 0; }
+.spx-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.spx-card .ph { aspect-ratio: 4 / 3; border-radius: var(--radius); margin-bottom: 14px; }
+.spx-card img { transition: transform 1.2s var(--ease-out); }
+.spx-card:hover img { transform: scale(1.04); }
+.spx-card h3 { font-family: var(--serif); font-weight: 500; font-size: 24px; transition: color .3s; }
+.spx-card:hover h3 { color: var(--gold-dark); }
+.spx-card p { color: var(--muted); font-size: 14.5px; margin-top: 4px; }
+@media (max-width: 900px) {
+  .spt4 { padding-top: 40px; }
+  .spt4-row, .spt4-row.n2 { grid-template-columns: 1fr 1fr; margin-top: 32px; }
+  .spt4-row .ph:nth-child(3) { display: none; }
+  .spx-row { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 66%; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -20px; padding: 0 20px 6px; scroll-padding: 0 20px; scrollbar-width: none; }
+  .spx-card { scroll-snap-align: start; }
+}
+
+/* Book online: the Seats / Conference room switch inside the illustrated banner */
+.ib .seg { margin-top: 0; border: 1px solid var(--line); border-radius: var(--radius); }
+.ib .seg button { border-radius: 2px; padding: 12px 24px; }
+.ib .seg button[aria-selected="true"] { background: var(--btn); color: #fff; }
+/* On phones the booking form matters most: skip the illustration on the Book page so the form comes straight after the title */
+@media (max-width: 900px) { .ib:has(.seg) .ib-art, .ib:has(.seg) .ib-wave { display: none; } .ib:has(.seg) { padding-bottom: 32px; } }

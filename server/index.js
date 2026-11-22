@@ -21,7 +21,10 @@ async function serveFile(req, res) {
   const urlPath = decodeURIComponent(req.url.split('?')[0]);
   let file = normalize(join(ROOT, urlPath));
   if (!file.startsWith(ROOT)) { res.statusCode = 403; return res.end('Forbidden'); }
-  try { if ((await stat(file)).isDirectory()) file = join(file, 'index.html'); } catch { file = join(ROOT, 'index.html'); } // SPA fallback
+  try { if ((await stat(file)).isDirectory()) file = join(file, 'index.html'); } catch {
+    // Pre-rendered page (/about -> about.html), otherwise the app's fallback page.
+    try { await stat(`${file}.html`); file = `${file}.html`; } catch { file = join(ROOT, 'index.html'); }
+  }
   try {
     const body = await readFile(file);
     const type = TYPES[extname(file)] || 'application/octet-stream';

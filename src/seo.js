@@ -1,21 +1,43 @@
 import { useEffect } from 'react';
+import { SITE } from './data.js';
 
-// Page titles (~50–60 characters) and descriptions (~150–160 characters) for search results and link previews.
-const ROUTES = {
-  '/': ['Co-working Space in Coimbatore | Seats & Cabins | Lemoria', 'Premium co-working space in Nehru Nagar East, Coimbatore. Book 1 to 60 seats, private cabins, conference cabins by the hour, day passes and virtual offices.'],
-  '/about': ['About Lemoria | Premium Co-working Space in Coimbatore', 'Discover the story behind Lemoria, a premium co-working space in Nehru Nagar East, Coimbatore, built for freelancers, startups and growing companies.'],
-  '/workspace': ['Book Co-working Seats in Coimbatore | 1 to 60 Seats | Lemoria', 'Book a flexi seat, a dedicated desk or up to 60 team seats in Coimbatore. Daily, weekly and monthly plans with Wi-Fi, coffee and conference cabin hours.'],
-  '/private-cabins': ['Private Office Cabins in Coimbatore for 2 to 12 | Lemoria', 'Furnished, lockable private cabins for teams of 2 to 12 in Nehru Nagar East, Coimbatore, with branding, dedicated AC and access to every amenity.'],
-  '/conference-cabins': ['Conference & Meeting Rooms by the Hour in Coimbatore | Lemoria', 'Book a private conference cabin for 4, 10 or 20 people by the hour in Coimbatore. Display, video conferencing and refreshments included. No membership needed.'],
-  '/book': ['Book Seats or a Conference Cabin Online | Lemoria Coimbatore', 'Reserve 1 to 60 co-working seats or a conference cabin at Lemoria, Coimbatore. Choose your date and time online and we confirm within 2 business hours.'],
-  '/virtual-office': ['Virtual Office & Business Address in Coimbatore | Lemoria', 'Get a professional business address in Nehru Nagar East, Coimbatore with GST registration support, mail handling and conference cabin credits.'],
-  '/day-pass': ['Co-working Day Pass in Coimbatore | Lemoria', 'Drop in for a day of focused work in Coimbatore. A seat on the shared floor with fast Wi-Fi, unlimited coffee and lounge access. No commitment.'],
-  '/memberships': ['Co-working Membership Plans in Coimbatore | Lemoria', 'Compare Lemoria memberships: flexi seats, dedicated desks, team seats and virtual offices in Coimbatore. Flexible monthly plans with no long lease.'],
-  '/amenities': ['60+ Co-working Amenities in Coimbatore | Lemoria', 'Wi-Fi with backup, conference cabins, parking, café, 24/7 access, CCTV, printing and more. See every amenity included at Lemoria, Coimbatore.'],
-  '/gallery': ['Photo Gallery | Inside Lemoria Co-working, Coimbatore', 'Take a look inside Lemoria: the shared floor, private cabins, conference cabins, lounge and café in Nehru Nagar East, Coimbatore.'],
-  '/contact': ['Contact Lemoria | Book a Tour of Our Coimbatore Co-working Space', 'Call, email or visit Lemoria at Rajagopal Street, Nehru Nagar East, Coimbatore 641014. Send an enquiry and we reply within one business day.'],
+// Page titles (~50–60 characters) and descriptions (~150–160 characters) for Google and link previews.
+// Used at runtime (useSeo) and at build time (scripts/prerender.mjs), so both always match.
+export const ROUTES = {
+  '/': ['Premium Coworking Space in Coimbatore | Lemoria Luxe', 'Lemoria Luxe is a luxury coworking space with managed offices on Avinashi Road, Coimbatore. Elegant desks, private offices and a boardroom-style meeting room.'],
+  '/workspace': ['Hot Desks & Dedicated Seats in Coimbatore | Lemoria Luxe', 'Book an elegant hot desk, dedicated seat or private focus cabin at Lemoria Luxe premium coworking, Avinashi Road, Coimbatore. Daily, weekly and monthly plans.'],
+  '/private-cabins': ['Managed Private Offices in Coimbatore | Lemoria Luxe', 'Fully managed, beautifully furnished private offices for teams of about 4 to 8 on Avinashi Road, Coimbatore. Move-in ready, with conference room access.'],
+  '/conference-cabins': ['Conference Room on Hourly Rent in Coimbatore | Lemoria Luxe', 'Book a boardroom-style conference room for about 10 by the hour on Avinashi Road, Coimbatore. Phone booths and informal meeting areas too. No membership needed.'],
+  '/day-pass': ['Coworking Day Pass in Coimbatore | Lemoria Luxe', 'Work from Lemoria Luxe coworking space in Coimbatore for a day. A seat in the open workspace with high-speed Wi-Fi and the pantry. No commitment.'],
+  '/virtual-office': ['Virtual Office in Coimbatore | Lemoria Luxe', 'Get a prestigious business address on Avinashi Road, Coimbatore with GST registration support, mail handling and conference room access.'],
+  '/amenities': ['Coworking Amenities in Coimbatore | Lemoria Luxe', 'Private offices, focus cabins, phone booths, a conference room, outdoor work area, pantry, lockers and high-speed Wi-Fi at Lemoria Luxe, Coimbatore.'],
+  '/faq': ['Coworking Space in Coimbatore: FAQ | Lemoria Luxe', 'Answers to common questions about Lemoria Luxe coworking space in Coimbatore: location, seats, private offices, conference room, hours and pricing.'],
+  '/about': ['About Lemoria Luxe | Coworking Space in Coimbatore', 'Lemoria Luxe is a premium coworking space and managed office on Avinashi Road, Coimbatore, created for founders, professionals and growing companies.'],
+  '/contact': ['Contact & Book a Tour | Lemoria Luxe Coworking, Coimbatore', 'Visit Lemoria Luxe at SR Enclave, R. Chinnaswamy Naidu Street, New Siddhapudur, Coimbatore 641044. Call +91 73580 07200 or book a private tour.'],
+  '/book': ['Book a Seat or Meeting Room Online | Lemoria Luxe', 'Reserve coworking seats or the conference room at Lemoria Luxe, Coimbatore. Choose your date online and we confirm within 2 business hours.'],
+  '/plans': ['Coworking Plans in Coimbatore | Lemoria Luxe', 'Flexible coworking plans at Lemoria Luxe, Coimbatore: flexi seats, dedicated seats, private offices and virtual offices. No long lease.'],
+  '/memberships': ['Coworking Plans in Coimbatore | Lemoria Luxe', 'Flexible coworking plans at Lemoria Luxe, Coimbatore: flexi seats, dedicated seats, private offices and virtual offices. No long lease.'],
+  '/gallery': ['Photos of Lemoria Luxe Coworking Space, Coimbatore', 'Take a look inside Lemoria Luxe premium coworking space on Avinashi Road, Coimbatore: the workspace, private offices and conference room.'],
 };
-const NAMES = { '/about': 'About us', '/workspace': 'Seats by the Chair', '/private-cabins': 'Private Cabins', '/conference-cabins': 'Conference Cabins', '/book': 'Book now', '/virtual-office': 'Virtual Office', '/day-pass': 'Day Pass', '/memberships': 'Memberships', '/amenities': 'Amenities', '/gallery': 'Gallery', '/contact': 'Contact' };
+export const NAMES = { '/workspace': 'Hot Desks & Dedicated Seats', '/private-cabins': 'Private Offices', '/conference-cabins': 'Conference Room', '/day-pass': 'Day Pass', '/virtual-office': 'Virtual Office', '/amenities': 'Amenities', '/faq': 'FAQ', '/about': 'About', '/contact': 'Contact', '/book': 'Book online', '/plans': 'Plans', '/memberships': 'Plans', '/gallery': 'Gallery' };
+
+export const canonical = (pathname) => `${SITE.url}${pathname === '/' ? '/' : pathname}`;
+
+export function breadcrumbLd(pathname) {
+  if (!NAMES[pathname]) return null;
+  return {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
+      { '@type': 'ListItem', position: 2, name: NAMES[pathname], item: canonical(pathname) },
+    ],
+  };
+}
+
+export const faqLd = (faq) => ({
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+});
 
 function setMeta(attr, key, value) {
   let el = document.head.querySelector(`meta[${attr}="${key}"]`);
@@ -33,16 +55,13 @@ export function setJsonLd(id, data) {
 
 // For pages with their own questions: publishes them as FAQPage structured data.
 export function useFaqJsonLd(faq) {
-  useEffect(() => setJsonLd('ld-faq', {
-    '@context': 'https://schema.org', '@type': 'FAQPage',
-    mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
-  }), [faq]);
+  useEffect(() => setJsonLd('ld-faq', faqLd(faq)), [faq]);
 }
 
 export function useSeo(pathname) {
   useEffect(() => {
     const [title, desc] = ROUTES[pathname] || ROUTES['/'];
-    const url = window.location.origin + pathname;
+    const url = canonical(pathname);
     document.title = title;
     setMeta('name', 'description', desc);
     setMeta('property', 'og:title', title);
@@ -53,16 +72,7 @@ export function useSeo(pathname) {
     let link = document.head.querySelector('link[rel="canonical"]');
     if (!link) { link = document.createElement('link'); link.rel = 'canonical'; document.head.appendChild(link); }
     link.href = url;
-    // Breadcrumbs for inner pages (Home > Page) help Google show the page path in results.
-    if (NAMES[pathname]) {
-      return setJsonLd('ld-breadcrumb', {
-        '@context': 'https://schema.org', '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: `${window.location.origin}/` },
-          { '@type': 'ListItem', position: 2, name: NAMES[pathname], item: url },
-        ],
-      });
-    }
-    return undefined;
+    const crumbs = breadcrumbLd(pathname);
+    return crumbs ? setJsonLd('ld-breadcrumb', crumbs) : undefined;
   }, [pathname]);
 }

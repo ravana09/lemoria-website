@@ -1,6 +1,6 @@
 # Lemoria — Website
 
-Premium co-working space website for Lemoria, Nehru Nagar East, Coimbatore.
+Premium coworking space website for Lemoria, New Siddhapudur (Avinashi Road), Coimbatore.
 React + Vite front end; enquiry and booking forms email Lemoria and send the visitor a confirmation.
 
 ## Run locally

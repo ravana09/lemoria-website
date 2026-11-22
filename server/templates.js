@@ -2,9 +2,9 @@
 // No Node-only imports here, so this file runs in both environments.
 
 const BRAND = {
-  name: 'Lemoria',
-  phone: '+91 98765 43210', // TODO: keep in sync with SITE.phone in src/data.js
-  address: 'No. 1 to 2, Rajagopal Street, Nehru Nagar East, Coimbatore South, Coimbatore, Tamil Nadu 641014',
+  name: 'Lemoria Luxe',
+  phone: '+91 73580 07200', // keep in sync with SITE.phone in src/data.js
+  address: 'Door No. 3A & 3B, Second Floor, 234, SR Enclave, R. Chinnaswamy Naidu Street, New Siddhapudur, Coimbatore, Tamil Nadu 641044',
   hours: 'Mon – Sat, 8:00 AM – 9:00 PM',
   gold: '#946B2C',
   ink: '#1A1814',
@@ -60,7 +60,7 @@ export function buildOwnerEmail(data) {
   const list = rows(data);
   return {
     subject: oneLine(`New ${kind.toLowerCase()}${what ? `: ${what}` : ''} — ${data.name}`),
-    text: `${kind} from the Lemoria website\n\n${list.map(([l, v]) => `${l}: ${v}`).join('\n')}\n\nReply to this email to answer ${data.name} directly.`,
+    text: `${kind} from the Lemoria Luxe website\n\n${list.map(([l, v]) => `${l}: ${v}`).join('\n')}\n\nReply to this email to answer ${data.name} directly.`,
     html: layout(`New ${kind.toLowerCase()} from the website`,
       `<p style="margin:0 0 18px;font-size:15px;line-height:1.6;color:#4A453D">Reply to this email to answer <b>${esc(data.name)}</b> directly.</p>${htmlTable(list)}`),
   };
@@ -71,17 +71,17 @@ export function buildCustomerEmail(data) {
   const kind = KIND_TITLES[data.kind] || 'Enquiry';
   const list = rows(data).filter(([l]) => !['Sent from page'].includes(l));
   const intro = data.kind === 'enquiry'
-    ? 'Thank you for contacting Lemoria. We have received your enquiry and a member of our team will get back to you within one business day.'
+    ? 'Thank you for contacting Lemoria Luxe. We have received your enquiry and a member of our team will get back to you within one business day.'
     : 'Thank you for your booking request. We are checking availability now and will confirm your booking and pricing by phone or email within 2 business hours.';
   return {
-    subject: data.kind === 'enquiry' ? 'We have received your enquiry — Lemoria' : 'We have received your booking request — Lemoria',
+    subject: data.kind === 'enquiry' ? 'We have received your enquiry — Lemoria Luxe' : 'We have received your booking request — Lemoria Luxe',
     text: `Hi ${first},\n\n${intro}\n\nYour ${kind.toLowerCase()}:\n${list.map(([l, v]) => `${l}: ${v}`).join('\n')}\n\nNeed anything sooner? Call us on ${BRAND.phone} or reply to this email.\n\nLemoria\n${BRAND.address}`,
     html: layout(`Thank you, ${first}!`,
       `<p style="margin:0 0 14px;font-size:15px;line-height:1.6;color:#4A453D">${esc(intro)}</p>
 <p style="margin:0 0 8px;font-size:13px;font-weight:700;letter-spacing:1px;color:${BRAND.gold};text-transform:uppercase">Your ${esc(kind.toLowerCase())}</p>
 ${htmlTable(list)}
 <p style="margin:22px 0 0;font-size:15px;line-height:1.6;color:#4A453D">Need anything sooner? Call us on <b>${esc(BRAND.phone)}</b> or simply reply to this email.</p>
-<p style="margin:22px 0 0;font-size:15px;color:#4A453D">Warm regards,<br><b>Team Lemoria</b></p>`),
+<p style="margin:22px 0 0;font-size:15px;color:#4A453D">Warm regards,<br><b>Team Lemoria Luxe</b></p>`),
   };
 }
 

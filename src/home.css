@@ -1,0 +1,160 @@
+/* Home page sections (chosen designs) + their phone layouts. Same palette and fonts as the rest of the site. */
+
+/* Light headings for the dark sections */
+.st-light h2 { color: #fff; }
+.st-light p { color: #D9D4CA; }
+.sec .center { text-align: center; }
+
+/* Cormorant's default old-style figures read "16" as "I6": use lining figures for numbers */
+.am4-count, .stp4-list span, .stats b { font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
+
+/* ================= Hero ================= */
+.hv-media { position: absolute; inset: 0; }
+.hv-media .bg-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* ================= Workspaces: mosaic ================= */
+.sp4 { display: grid; grid-template-columns: 1.3fr 1fr 1fr; grid-template-rows: 280px 280px; gap: 18px; }
+.sp4-card { position: relative; border-radius: var(--radius); overflow: hidden; color: #fff; }
+.sp4-card:first-child { grid-row: span 2; }
+.sp4-card .ph, .sp4-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-out); }
+.sp4-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(12,10,8,.82), rgba(12,10,8,0) 60%); }
+.sp4-body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 22px 24px; }
+.sp4-body h3 { color: #fff; font-family: var(--serif); font-weight: 500; font-size: 26px; line-height: 1.1; }
+.sp4-card:first-child h3 { font-size: 38px; }
+.sp4-body p { color: #E5E0D6; font-size: 14px; margin-top: 6px; max-width: 420px; }
+.sp4-card:hover img { transform: scale(1.04); }
+@media (max-width: 1000px) { .sp4 { grid-template-columns: 1fr 1fr; grid-template-rows: 340px repeat(2, 230px); } .sp4-card:first-child { grid-column: span 2; grid-row: auto; } }
+
+/* ================= Who it's for: dark band ================= */
+#sec-why.pr3 { background: var(--ink); }
+.pr3 .sec-deco { opacity: .08; }
+.pr3-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,.12); border-left: 1px solid rgba(255,255,255,.12); }
+.pr3-item { padding: 36px 32px; border-right: 1px solid rgba(255,255,255,.12); border-bottom: 1px solid rgba(255,255,255,.12); transition: background .3s; }
+.pr3-item .icbox { border-color: rgba(233,203,134,.45); color: var(--gold-light); width: 50px; height: 50px; margin-bottom: 18px; }
+.pr3-item h3 { color: #fff; font-size: 19px; }
+.pr3-item p { color: #BDB7AC; margin-top: 6px; }
+.pr3-item:hover { background: rgba(255,255,255,.04); }
+@media (max-width: 1000px) { .pr3-grid { grid-template-columns: 1fr 1fr; } }
+
+/* ================= Amenities: count + full list ================= */
+.am4 { display: grid; grid-template-columns: .7fr 1.3fr; gap: 72px; align-items: start; }
+.am4-head { position: sticky; top: 110px; }
+.am4-count { display: block; font-family: var(--serif); font-weight: 500; font-size: clamp(96px, 12vw, 160px); line-height: .9; color: var(--gold); }
+.am4-head p { font-family: var(--serif); font-size: 28px; line-height: 1.2; color: var(--ink); margin: 14px 0 24px; max-width: 320px; }
+.am4-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 36px; border-top: 1px solid var(--line); }
+.am4-list li { display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--line); color: var(--ink); font-weight: 500; }
+.am4-list .ic { color: var(--gold); flex: none; }
+
+/* ================= Steps: dark band ================= */
+#sec-steps.stp4 { background: var(--ink); }
+.stp4 .sec-deco { opacity: .08; }
+.stp4-list { list-style: none; padding: 0; margin: 0 0 48px; display: grid; grid-template-columns: repeat(3, 1fr); }
+.stp4-list li { padding: 8px 36px 0; border-left: 1px solid rgba(233,203,134,.3); }
+.stp4-list li:first-child { border-left: 0; }
+.stp4-list span { display: block; font-family: var(--serif); font-size: 72px; line-height: 1; color: var(--gold-light); margin-bottom: 18px; }
+.stp4-list h3 { color: #fff; font-size: 20px; }
+.stp4-list p { color: #BDB7AC; margin-top: 8px; }
+
+/* ================= Location: full map + card ================= */
+.loc2 { position: relative; min-height: 600px; display: flex; align-items: center; background: var(--soft); overflow: hidden; }
+.loc2-map { position: absolute; top: 0; left: 0; width: 140%; height: 100%; margin: 0; border: 0; border-radius: 0; } /* wider than the screen so the pin sits clear of the card */
+.loc2-wrap { position: relative; width: 100%; pointer-events: none; padding-top: 60px; padding-bottom: 60px; }
+.loc2-card { pointer-events: auto; max-width: 460px; background: #fff; padding: 40px 36px; border-radius: var(--radius); box-shadow: 0 30px 60px rgba(20,20,20,.16); }
+.loc2-card .st { margin-bottom: 24px; }
+.loc2-card .st h2 { font-size: clamp(30px, 3.4vw, 42px); }
+.loc2-card .info-list { margin-bottom: 26px; }
+
+/* =====================================================================
+   Phones and small tablets: most visitors arrive here, so each section
+   gets its own layout rather than a squeezed desktop one.
+   ===================================================================== */
+@media (max-width: 900px) {
+  /* Hero: the film fills the screen behind the words; the quote form follows on cream underneath. */
+  .hv { display: grid; grid-template-columns: 100%; align-items: stretch; min-height: 0; background: var(--soft); color: #fff; }
+  .hv-media { position: relative; inset: auto; grid-area: 1 / 1; }
+  .hv .hv-shade { background: linear-gradient(to top, rgba(10,9,7,.9) 0%, rgba(10,9,7,.55) 45%, rgba(10,9,7,.3) 100%); }
+  .hv-in { display: contents; }
+  .hv-copy { grid-area: 1 / 1; position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: flex-end;
+    min-height: calc(100svh - 64px); padding: 40px 20px 92px; }
+  @media (max-width: 760px) { .hv-copy { min-height: calc(100svh - 64px - 62px); } }
+  .hv .kicker.light { align-self: flex-start; }
+  .hv h1 { font-size: clamp(38px, 10.5vw, 54px); }
+  .hv-copy > p { font-size: 16px; }
+  .hv .hv-points { gap: 8px 18px; font-size: 14px; }
+  .hv .btns { margin-top: 26px; }
+  .hv .qe { grid-area: 2 / 1; position: relative; z-index: 2; margin: -56px 16px 0; padding: 26px 22px; animation: none; }
+
+  /* Stats: a 2 × 2 card under the form */
+  .stats { margin-top: 0; padding: 20px 0 8px; background: var(--soft); }
+  .stats-in { grid-template-columns: 1fr 1fr; gap: 0; padding: 6px 0; box-shadow: none; border: 1px solid var(--line); }
+  .stats-in > div { padding: 18px 8px; border-left: 0; }
+  .stats-in > div:nth-child(2n) { border-left: 1px solid var(--line); }
+  .stats-in > div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .stats b { font-size: 30px; }
+  .stats .st-l { font-size: 13px; }
+
+  /* Workspaces: a swipeable row of tall cards, with the next card peeking in */
+  .sp4 { display: grid; grid-template-columns: none; grid-template-rows: none; grid-auto-flow: column; grid-auto-columns: 78%;
+    gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -20px; padding: 0 20px 6px; scroll-padding: 0 20px; scrollbar-width: none; }
+  .sp4::-webkit-scrollbar { display: none; }
+  .sp4-card, .sp4-card:first-child { grid-column: auto; grid-row: auto; aspect-ratio: 4 / 5; scroll-snap-align: start; }
+  .sp4-card:first-child h3, .sp4-body h3 { font-size: 28px; }
+
+  /* Who it's for: a compact list, icon beside the words */
+  .pr3-grid { grid-template-columns: 1fr; border-left: 0; }
+  .pr3-item { display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start; padding: 22px 0; border-right: 0; }
+  .pr3-item .icbox { width: 44px; height: 44px; margin: 0; }
+  .pr3-item h3 { font-size: 17px; }
+  .pr3-item p { font-size: 14.5px; margin-top: 4px; }
+
+  /* Video tour: film first, a smaller gold frame */
+  .tour4 { gap: 48px; }
+  .tour4-frame .play-video { aspect-ratio: 16 / 11; }
+
+  /* Amenities: the count beside its sentence, then the list in two columns */
+  .am4 { grid-template-columns: 1fr; gap: 26px; }
+  .am4-head { position: static; display: grid; grid-template-columns: auto 1fr; column-gap: 18px; align-items: center; }
+  .am4-head .kicker { grid-column: 1 / -1; }
+  .am4-count { font-size: 88px; }
+  .am4-head p { font-size: 22px; margin: 0; }
+  .am4-head .more { grid-column: 1 / -1; margin-top: 14px; }
+  .am4-list { column-gap: 18px; }
+  .am4-list li { gap: 10px; padding: 13px 0; font-size: 14px; line-height: 1.3; }
+  .am4-list .ic { width: 18px; height: 18px; }
+
+  /* Steps: a vertical list, numeral beside each step */
+  .stp4-list { grid-template-columns: 1fr; margin-bottom: 36px; }
+  .stp4-list li, .stp4-list li:first-child { display: grid; grid-template-columns: 64px 1fr; gap: 14px; padding: 22px 0; border-left: 0; border-top: 1px solid rgba(233,203,134,.25); }
+  .stp4-list li:first-child { border-top: 0; padding-top: 0; }
+  .stp4-list span { font-size: 46px; margin: 0; }
+  .stp4-list h3 { font-size: 18px; }
+  .stp4 .btn { width: 100%; }
+
+  /* Location: map on top, the card overlapping it */
+  .loc2 { display: block; min-height: 0; }
+  .loc2-map { position: relative; width: 100%; height: 300px; }
+  .loc2-wrap { pointer-events: auto; padding-top: 0; padding-bottom: 56px; margin-top: -56px; }
+  .loc2-card { max-width: none; padding: 30px 22px; }
+  .loc2-card .btn { width: 100%; }
+
+  /* Closing band: stacked, full-width buttons */
+  .cta-in { flex-direction: column; align-items: stretch; text-align: center; }
+  .cta-in h2 { font-size: 30px; }
+  .cta-in .btns .btn { flex: 1 1 100%; }
+
+  /* Tighter rhythm on small screens */
+  .sec, .section { padding: 72px 0; }
+  .st { margin-bottom: 32px; }
+  .st h2 { font-size: clamp(32px, 8.6vw, 42px); }
+}
+
+@media (max-width: 360px) {
+  .am4-list { grid-template-columns: 1fr; }
+  .hv .hv-points li:nth-child(3) { display: none; }
+}
+
+/* Footer contact: the email wraps on narrow screens instead of overflowing */
+.f-contact a { overflow-wrap: anywhere; }
+
+/* Page banners: keep the important part of the photo in view (set per page with <Banner focus="…">) */
+.banner-bg img { object-position: var(--banner-focus, center); }

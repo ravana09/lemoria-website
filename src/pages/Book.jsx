@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import Img from '../components/Img.jsx';
-import { SeatMap } from '../components/Blocks.jsx';
-import { CABINS, DURATIONS, IMG, MAX_SEATS, PLANS, SITE, TEAM_SIZES, TIME_SLOTS, localDate, defaultBookingDate } from '../data.js';
+import { ArtBanner, SeatMap } from '../components/Blocks.jsx';
+import { BookingArt } from '../components/Illustrations.jsx';
+import { CABINS, DURATIONS, MAX_SEATS, PLANS, SITE, TEAM_SIZES, TIME_SLOTS, localDate, defaultBookingDate } from '../data.js';
 import { submitBooking } from '../api.js';
 
 const today = () => localDate();
@@ -43,7 +44,7 @@ export default function Book() {
   const [seatType, setSeatType] = useState(SEAT_TYPES.includes(params.get('plan')) ? params.get('plan') : SEAT_TYPES[0]);
   const [duration, setDuration] = useState('Month');
   // conference
-  const [cabinId, setCabinId] = useState(CABINS.some((c) => c.id === params.get('cabin')) ? params.get('cabin') : CABINS[1].id);
+  const [cabinId, setCabinId] = useState(CABINS.some((c) => c.id === params.get('cabin')) ? params.get('cabin') : CABINS[0].id);
   const [slot, setSlot] = useState('');
   const [hours, setHours] = useState(2);
   const [people, setPeople] = useState(4);
@@ -101,17 +102,16 @@ export default function Book() {
 
   return (
     <>
-      <section className="bk-hero">
-        <div className="bg"><Img src={tab === 'seats' ? IMG.floor : IMG.conference} alt="" eager style={{ position: 'absolute', inset: 0 }} /></div>
-        <div className="container">
-          <div className="crumb">Reservations</div>
-          <h1>{tab === 'seats' ? 'Reserve your seats' : 'Book a conference cabin'}</h1>
-          <div className="seg big" role="tablist" aria-label="Booking type">
-            <button type="button" role="tab" aria-selected={tab === 'seats'} onClick={() => setTab('seats')}>Seats by the chair</button>
-            <button type="button" role="tab" aria-selected={tab === 'conference'} onClick={() => setTab('conference')}>Conference cabin</button>
-          </div>
+      <ArtBanner crumb="Book online" art={BookingArt}
+        title={tab === 'seats' ? 'Reserve your seats' : 'Book the conference room'}
+        text={tab === 'seats'
+          ? 'Choose how many seats you need, pick a start date and send your request. We’ll confirm availability and price.'
+          : 'Pick a date and time for the conference room (seats about 10). We’ll confirm your booking.'}>
+        <div className="seg big" role="tablist" aria-label="Booking type">
+          <button type="button" role="tab" aria-selected={tab === 'seats'} onClick={() => setTab('seats')}>Seats</button>
+          <button type="button" role="tab" aria-selected={tab === 'conference'} onClick={() => setTab('conference')}>Conference room</button>
         </div>
-      </section>
+      </ArtBanner>
 
       <section className="section soft">
         <form className="container bk" onSubmit={onSubmit} noValidate>
@@ -133,8 +133,8 @@ export default function Book() {
                     </div>
                     <input type="range" min="1" max={MAX_SEATS} value={seats} onChange={(e) => setSeats(Number(e.target.value))} aria-label="Number of seats" />
                   </div>
-                  <p className="hint">Need more than {MAX_SEATS}? <Link to="/contact?type=Enterprise">Talk to us about a full floor.</Link></p>
-                  <div className="seat-frame light-frame"><SeatMap count={seats} /></div>
+                  <p className="hint">Bigger team? <Link to="/private-cabins">See our private offices</Link> or <Link to="/contact?type=Team seats (company)">talk to us</Link>.</p>
+                  <div className="seat-frame light-frame"><SeatMap count={seats} total={MAX_SEATS} /></div>
                 </fieldset>
                 <fieldset className="bk-step">
                   <legend><span>2</span>Seat type, duration & start date</legend>

@@ -17,7 +17,7 @@ function WorkspaceMenu({ onPick }) {
   );
 }
 
-// Menu links; the header splits the 4 items either side of the logo.
+// Menu links; the header puts the first two items left of the logo and the rest on the right.
 function Nav({ items }) {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
@@ -61,7 +61,7 @@ function MobileMenu({ open }) {
   );
 }
 
-// Header: Home + Workspace on the left, logo centred, About us + Amenities + button on the right.
+// Header: Home + About on the left, logo centred, Amenities + Workspaces + FAQ + "Get in touch" on the right.
 export default function Header() {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
@@ -71,10 +71,10 @@ export default function Header() {
     <header className={`hd hd3 ${open ? 'is-open' : ''}`}>
       <div className="hd-bar">
         <div className="container hd-in">
-          <Nav items={NAV.slice(0, 2)} />
+          <Nav items={NAV.slice(0, 3)} />
           <Link to="/" aria-label={`${SITE.name} home`} className="hd-logo"><Logo size={38} /></Link>
           <div className="hd-right">
-            <Nav items={NAV.slice(2)} />
+            <Nav items={NAV.slice(3)} />
             <Link to="/contact" className="btn btn-primary btn-sm">Get in touch</Link>
             <button className="burger" type="button" aria-expanded={open} aria-label="Menu" onClick={() => setOpen(!open)}><span /><span /><span /></button>
           </div>

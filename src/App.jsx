@@ -8,6 +8,7 @@ import Amenities from './pages/Amenities.jsx';
 import Gallery from './pages/Gallery.jsx';
 import Contact from './pages/Contact.jsx';
 import Book from './pages/Book.jsx';
+import FaqPage from './pages/Faq.jsx';
 import { SPACES } from './data.js';
 
 export default function App() {
@@ -20,6 +21,8 @@ export default function App() {
         <Route path="meeting-rooms" element={<Space id="conference-cabins" />} />
         <Route path="book" element={<Book />} />
         <Route path="memberships" element={<Memberships />} />
+        <Route path="plans" element={<Memberships />} />
+        <Route path="faq" element={<FaqPage />} />
         <Route path="amenities" element={<Amenities />} />
         <Route path="gallery" element={<Gallery />} />
         <Route path="contact" element={<Contact />} />

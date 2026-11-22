@@ -10,7 +10,7 @@ export default function Gallery() {
   const list = cat === 'All' ? GALLERY : GALLERY.filter((g) => g.cat === cat);
   return (
     <>
-      <Banner image={IMG.bigRoom} alt="Grand conference cabin at Lemoria, Coimbatore" crumb="Gallery" title="Take a look inside" text="The shared floor, private cabins, conference cabins, lounge and café at Lemoria, Nehru Nagar East." />
+      <Banner image={IMG.bigRoom} alt="Conference room at Lemoria Luxe, Coimbatore" crumb="Gallery" title="Take a look inside" text="Our elegant workspace, private offices and conference room on Avinashi Road, Coimbatore." />
       <section className="section">
         <div className="container">
           <Head center eyebrow="Gallery" title="Spaces designed for focus and comfort" lead="Browse by space to see where our members work, meet and recharge." />
@@ -20,7 +20,7 @@ export default function Gallery() {
           <div className="masonry" key={cat}>
             {list.map((g) => (
               <figure className="gal-fig" key={g.src}>
-                <Img src={g.src} alt={`${g.alt} at Lemoria, Coimbatore`} sizes="(max-width: 700px) 100vw, 400px" />
+                <Img src={g.src} alt={`${g.alt} at Lemoria Luxe, Coimbatore`} sizes="(max-width: 700px) 100vw, 400px" />
                 <figcaption><span>{g.cat}</span>{g.alt}</figcaption>
               </figure>
             ))}

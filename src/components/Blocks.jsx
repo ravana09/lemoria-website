@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Img from './Img.jsx';
 import Icon from './Icon.jsx';
-import { AMENITIES, FAQ, PLANS } from '../data.js';
+import { FAQ, PLANS, TOUR_LINK } from '../data.js';
 
 export function Head({ eyebrow, title, lead, center }) {
   return (
@@ -13,11 +13,37 @@ export function Head({ eyebrow, title, lead, center }) {
   );
 }
 
-export function Banner({ image, alt, crumb, title, text }) {
+// `focus` picks which part of the photo stays in view when the wide banner crops it, e.g. "center 25%" keeps faces.
+export function Banner({ image, alt, crumb, title, text, focus }) {
   return (
-    <section className="banner">
+    <section className="banner" style={focus ? { '--banner-focus': focus } : undefined}>
       <Img src={image} alt={alt} eager className="banner-bg" />
       <div className="container"><div className="crumb"><Link to="/">Home</Link> / {crumb}</div><h1>{title}</h1>{text && <p>{text}</p>}</div>
+    </section>
+  );
+}
+
+// A figure such as "~50": the tilde is hard to read in the serif (it looks like "-50"), so it shows as a small "about".
+export function Num({ n }) {
+  return n.startsWith('~') ? <><span className="approx">about</span>{n.slice(1)}</> : n;
+}
+
+// Page banner with an illustration: words on the left, the illustration on the right, a soft cream wave behind.
+// `art` is one of the components from Illustrations.jsx; `children` are the buttons.
+export function ArtBanner({ crumb, title, text, art: Art, children }) {
+  return (
+    <section className="ib">
+      <svg className="ib-wave" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true"><path d="M0 120 C80 140 120 220 220 240 C300 256 360 250 400 300 L0 300 Z" /></svg>
+      <div className="container ib-in">
+        <div className="ib-copy">
+          <div className="crumb crumb-dark"><Link to="/">Home</Link> / {crumb}</div>
+          <h1>{title}</h1>
+          <span className="ib-rule" />
+          <p>{text}</p>
+          {children && <div className="btns">{children}</div>}
+        </div>
+        <Art className="ib-art" />
+      </div>
     </section>
   );
 }
@@ -32,29 +58,21 @@ export function SeatMap({ count, total = 60 }) {
   );
 }
 
-export function AmenityGrid() {
-  return (
-    <div className="grid4">
-      {AMENITIES.map((g) => (
-        <div key={g.group} className="am2-col card-plain"><h3>{g.group}</h3><p className="am-desc">{g.desc}</p><ul>{g.items.map((it) => <li key={it[0]}><Icon name={it[1]} size={18} />{it[0]}</li>)}</ul></div>
-      ))}
-    </div>
-  );
-}
-
+// Plan cards. Features are optional until Lemoria Luxe shares its final plans.
 export function PlanGrid() {
   return (
     <div className="grid4">
-      {PLANS.map((p) => (
-        <div className={`plan ${p.popular ? 'pop' : ''}`} key={p.name}>
-          {p.popular && <span className="tag">Most popular</span>}
-          <h3>{p.name}</h3><p className="plan-desc">{p.desc}</p>
-          <ul>{p.features.map((f) => <li key={f}><Icon name="check" size={16} />{f}</li>)}</ul>
-          <Link to={p.name === 'Virtual' ? '/contact?type=Virtual office' : `/book?tab=seats&plan=${encodeURIComponent(p.name)}`} className={`btn ${p.popular ? 'btn-primary' : 'btn-outline'}`}>
-            {p.name === 'Virtual' ? 'Enquire' : 'Book seats'}
-          </Link>
-        </div>
-      ))}
+      {PLANS.map((p) => {
+        const to = p.name === 'Virtual' ? '/contact?type=Virtual office' : p.name === 'Private Office' ? '/contact?type=Private cabin' : `/book?tab=seats&plan=${encodeURIComponent(p.name)}`;
+        return (
+          <div className={`plan ${p.popular ? 'pop' : ''}`} key={p.name}>
+            {p.popular && <span className="tag">Most popular</span>}
+            <h3>{p.name}</h3><p className="plan-desc">{p.desc}</p>
+            {p.features && <ul>{p.features.map((f) => <li key={f}><Icon name="check" size={16} />{f}</li>)}</ul>}
+            <Link to={to} className={`btn ${p.popular ? 'btn-primary' : 'btn-outline'}`}>Ask for pricing</Link>
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -67,8 +85,8 @@ export function CtaBand() {
   return (
     <section className="cta-band">
       <div className="container cta-in">
-        <div><h2>Ready to find your space?</h2><p>Book seats for your team or reserve a conference cabin today.</p></div>
-        <div className="btns"><Link to="/book" className="btn btn-primary">Book now</Link><Link to="/contact" className="btn btn-outline">Get in touch</Link></div>
+        <div><h2>Experience Lemoria Luxe in person</h2><p>Book a private tour of our premium coworking space on Avinashi Road.</p></div>
+        <div className="btns"><Link to={TOUR_LINK} className="btn btn-primary">Book a tour</Link><Link to="/book" className="btn btn-outline">Book online</Link></div>
       </div>
     </section>
   );
