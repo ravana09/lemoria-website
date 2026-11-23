@@ -87,7 +87,7 @@
 
 /* ---------- small screens ---------- */
 @media (max-width: 600px) {
-  .hv { min-height: 78vh; }
+  .hv { min-height: 78vh;padding-bottom: 15px;}
   .hv-in { padding-top: 56px; padding-bottom: 56px; }
   .hv .btns .btn { flex: 1 1 100%; }
 }
