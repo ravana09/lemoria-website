@@ -85,7 +85,7 @@ export function CtaBand() {
   return (
     <section className="cta-band">
       <div className="container cta-in">
-        <div><h2>Experience Lemoria Luxe in person</h2><p>Book a private tour of our premium coworking space on Avinashi Road.</p></div>
+        <div><h2>Experience Lemoria Luxe in person</h2><p>Book a private tour of our premium coworking space on Gandhipuram.</p></div>
         <div className="btns"><Link to={TOUR_LINK} className="btn btn-primary">Book a tour</Link><Link to="/book" className="btn btn-outline">Book online</Link></div>
       </div>
     </section>

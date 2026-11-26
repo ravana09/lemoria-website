@@ -17,7 +17,7 @@ export default function About() {
     <>
       {/* Illustrated banner */}
       <ArtBanner crumb="About" title="About Lemoria Luxe" art={TeamArt}
-        text="Premium coworking and managed offices on Avinashi Road, Coimbatore. A calm, beautifully finished place for founders, professionals and growing teams.">
+        text="Premium coworking and managed offices on Gandhipuram, Coimbatore. A calm, beautifully finished place for founders, professionals and growing teams.">
         <Link to="/contact" className="btn btn-primary">Get in touch</Link>
       </ArtBanner>
 
@@ -45,7 +45,7 @@ export default function About() {
       <section className="section" id="sec-find">
         <div className="container ab-loc">
           <div>
-            <Head eyebrow="Find us" title="On Avinashi Road, Coimbatore" />
+            <Head eyebrow="Find us" title="On Gandhipuram, Coimbatore" />
             <ul className="info-list">
               <li><span className="icbox"><Icon name="pin" size={22} /></span><div><small>Address</small><span>{SITE.address}</span></div></li>
               <li><span className="icbox"><Icon name="clock" size={22} /></span><div><small>Open</small><span>{SITE.hours}</span></div></li>

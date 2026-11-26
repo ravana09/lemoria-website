@@ -9,9 +9,10 @@ const hits = new Map();
 function rateLimited(ip) {
   const now = Date.now();
   const list = (hits.get(ip) || []).filter((t) => now - t < RATE.windowMs);
+  if (list.length >= RATE.max) { hits.set(ip, list); return true; } // blocked tries are not counted, so retrying does not extend the block
   list.push(now);
   hits.set(ip, list);
-  return list.length > RATE.max;
+  return false;
 }
 
 function readJson(req) {
@@ -29,7 +30,11 @@ const send = (res, status, body) => { res.statusCode = status; res.setHeader('Co
 export function createApiHandler(env, { allowDryRun = true } = {}) {
   const mailer = createMailer(env);
   if (mailer.dryRun) console.log('[mail] SMTP is not configured — enquiries will be printed in this terminal, not emailed. See .env.example.');
-  else console.log(`[mail] Enquiries will be emailed to ${env.MAIL_TO}`);
+  else {
+    console.log(`[mail] Enquiries will be emailed to ${env.MAIL_TO}`);
+    // One login check at start-up, so a wrong password or a blocked connection shows in the host's logs straight away.
+    // mailer.verify().then(() => console.log('[mail] SMTP login check: OK'), (err) => console.error(`[mail] SMTP login check FAILED: ${err.message}`));
+  }
 
   return async function handler(req, res, next) {
     const path = req.url.split('?')[0];

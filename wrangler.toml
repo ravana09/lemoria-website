@@ -16,8 +16,8 @@ keep_vars = true
 
 # Public email settings (safe to keep in the code).
 [vars]
-MAIL_TO = "lemoriacoworks@gmail.com"
-MAIL_FROM = "Lemoria Luxe <lemoriacoworks@gmail.com>"
+MAIL_TO = "info@lemoria.space"
+MAIL_FROM = "Lemoria Luxe <info@lemoria.space>"
 SMTP_HOST = "smtp.gmail.com"
 SMTP_PORT = "465"
 SMTP_SECURE = "true"

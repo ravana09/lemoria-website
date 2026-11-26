@@ -10,7 +10,7 @@ export default function Gallery() {
   const list = cat === 'All' ? GALLERY : GALLERY.filter((g) => g.cat === cat);
   return (
     <>
-      <Banner image={IMG.bigRoom} alt="Conference room at Lemoria Luxe, Coimbatore" crumb="Gallery" title="Take a look inside" text="Our elegant workspace, private offices and conference room on Avinashi Road, Coimbatore." />
+      <Banner image={IMG.bigRoom} alt="Conference room at Lemoria Luxe, Coimbatore" crumb="Gallery" title="Take a look inside" text="Our elegant workspace, private offices and conference room on Gandhipuram, Coimbatore." />
       <section className="section">
         <div className="container">
           <Head center eyebrow="Gallery" title="Spaces designed for focus and comfort" lead="Browse by space to see where our members work, meet and recharge." />

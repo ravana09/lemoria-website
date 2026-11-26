@@ -17,7 +17,7 @@ export default function Footer() {
           <div className="ft-grid">
             <div className="ft-brand">
               <Logo size={44} tone="original" />
-              <p>Premium coworking and managed offices on Avinashi Road, Coimbatore.</p>
+              <p>Premium coworking and managed offices on Gandhipuram, Coimbatore.</p>
               <p className="ft-hours"><Icon name="clock" size={16} />{SITE.hours}</p>
             </div>
             <div><h4>Workspaces</h4>{WORKSPACE_MENU.slice(0, 5).map((m) => <Link key={m.to} to={m.to}>{m.title}</Link>)}</div>

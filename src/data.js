@@ -7,9 +7,9 @@ export const SITE = {
   url: 'https://lemoria-website.pradeep09sathish.workers.dev', // TODO: change to the custom domain when it is connected
   phone: '+91 73580 07200', // also update server/templates.js
   whatsapp: '917358007200', // country code + number, digits only
-  email: 'lemoriacoworks@gmail.com',
+  email: 'info@lemoria.space',
   address: 'Door No. 3A & 3B, Second Floor, 234, SR Enclave, R. Chinnaswamy Naidu Street, New Siddhapudur, Coimbatore, Tamil Nadu 641044',
-  area: 'Avinashi Road, Coimbatore',
+  area: 'Gandhipuram, Coimbatore',
   hours: 'Mon – Sat, 8:00 AM – 9:00 PM',
   // Exact Google Maps location ("Lemoria Central")
   geo: { lat: 11.0212345, lng: 76.9724079 },
@@ -71,7 +71,7 @@ export const SPACES = {
     path: '/workspace', title: 'Hot Desks & Dedicated Seats', short: 'Seats', image: IMG.floor,
     alt: 'Coworking desks at Lemoria Luxe, Coimbatore', card: 'Elegant hot desks, dedicated seats and quiet focus cabins.',
     tagline: 'A premium seat in a beautifully designed workspace.',
-    intro: 'Hot desks and dedicated seats in a bright, elegant workspace on Avinashi Road, with private focus cabins and phone booths when you need quiet.',
+    intro: 'Hot desks and dedicated seats in a bright, elegant workspace on Gandhipuram, with private focus cabins and phone booths when you need quiet.',
     includes: ['High-speed Wi-Fi', 'Lockers', 'Pantry', 'Phone booths', 'Informal meeting areas', 'Outdoor work area'],
     types: [
       { name: 'Hot Desk', image: IMG.community, desc: 'Any open seat in the workspace.' },
@@ -98,7 +98,7 @@ export const SPACES = {
     path: '/conference-cabins', title: 'Conference Room', short: 'Meeting spaces', image: IMG.conference,
     alt: 'Conference room at Lemoria Luxe, Coimbatore', card: 'A boardroom-style room for about 10, by the hour.',
     tagline: 'A boardroom-style conference room for about 10. Book by the hour.',
-    intro: 'Impress clients in a polished, private conference room on Avinashi Road, with informal meeting areas and phone booths close by. No membership needed.',
+    intro: 'Impress clients in a polished, private conference room on Gandhipuram, with informal meeting areas and phone booths close by. No membership needed.',
     includes: ['Seats about 10', 'High-speed Wi-Fi', 'Pantry nearby', 'Reception for guests', 'Phone booths for calls', 'Informal meeting areas'], // TODO: add display / video conferencing if provided
     types: [], // filled from CABINS below
     facts: [['~10', 'Seats'], ['Hourly', 'Booking'], ['No', 'Membership needed']],
@@ -119,8 +119,8 @@ export const SPACES = {
   },
   'virtual-office': {
     path: '/virtual-office', title: 'Virtual Office', short: 'Virtual office', image: IMG.clientMeeting,
-    alt: 'Professional meeting at Lemoria Luxe, Coimbatore', card: 'A prestigious Avinashi Road business address.',
-    tagline: 'A prestigious business address on Avinashi Road, Coimbatore.',
+    alt: 'Professional meeting at Lemoria Luxe, Coimbatore', card: 'A prestigious Gandhipuram business address.',
+    tagline: 'A prestigious business address on Gandhipuram, Coimbatore.',
     intro: 'Give your business a premium Coimbatore address, with mail handling and the conference room whenever you need to meet in person.',
     includes: ['Registered business address', 'GST registration support', 'Mail & courier handling', 'Conference room access'], // TODO: confirm GST documents provided
     types: [
@@ -164,10 +164,10 @@ export const PLANS = [
 // ---- Home page ----
 export const HOME = {
   hero: {
-    kicker: 'Coimbatore · Avinashi Road · Now open',
+    kicker: 'Coimbatore · Gandhipuram · Now open',
     title: 'Luxury workspaces & private offices',
     accent: 'in the heart of Coimbatore.',
-    text: 'Designer desks, private offices and a boardroom for ambitious teams. No long lease.',
+    text: 'Designer desks, private offices and a boardroom for ambitious teams. .',
     points: ['Elegant interiors', 'Flexible terms', 'Ready to move in'],
   },
   sections: {
@@ -175,7 +175,7 @@ export const HOME = {
     personas: { kicker: 'Who it’s for', title: 'Built for the way you work' },
     steps: { kicker: 'Getting started', title: 'Three steps to your new workspace' },
     amenities: { kicker: 'Amenities', title: 'Every detail, thoughtfully taken care of' },
-    location: { kicker: 'Location', title: 'A prestigious address on Avinashi Road' },
+    location: { kicker: 'Lemoria Central', title: 'A prestigious address on Gandhipuram' },
   },
   // Approximate figures — keep them approximate.
   stats: [
@@ -214,7 +214,7 @@ export const AMENITIES = [
 
 // ---- FAQ page (also published to Google as FAQ structured data) ----
 export const FAQ = [
-  { q: 'Where is Lemoria Luxe located?', a: `Lemoria Luxe is a premium coworking space off Avinashi Road, at ${SITE.address}.` },
+  { q: 'Where is Lemoria Luxe located?', a: `Lemoria Luxe is a premium coworking space off Gandhipuram, at ${SITE.address}.` },
   { q: 'What workspaces does Lemoria Luxe offer?', a: 'Hot desks, dedicated seats, focus cabins, private offices, a conference room, day passes and virtual offices.' },
   { q: 'How many seats does Lemoria Luxe have?', a: 'About 50 seats across the open workspace, 6 private offices, 4 focus cabins and an outdoor work area.' },
   { q: 'Can I book just one seat?', a: 'Yes. Book a single seat for a day, a week or a month.' },
@@ -228,7 +228,7 @@ export const FAQ = [
 // ---- About page ----
 export const ABOUT = {
   story: [
-    'Lemoria Luxe is a premium coworking space and managed office on Avinashi Road, Coimbatore, created for founders, professionals and growing companies who expect more from where they work.',
+    'Lemoria Luxe is a premium coworking space and managed office on Gandhipuram, Coimbatore, created for founders, professionals and growing companies who expect more from where they work.',
     'Every detail is considered, from refined interiors to quiet focus cabins and a boardroom-style conference room. Arrive, settle in, and do your best work.',
   ],
   mission: 'To give Coimbatore’s professionals a beautiful, effortless place to work.',

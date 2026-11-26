@@ -1,6 +1,6 @@
 # Lemoria — Website
 
-Premium coworking space website for Lemoria, New Siddhapudur (Avinashi Road), Coimbatore.
+Premium coworking space website for Lemoria, New Siddhapudur (Gandhipuram), Coimbatore.
 React + Vite front end; enquiry and booking forms email Lemoria and send the visitor a confirmation.
 
 ## Run locally
@@ -39,6 +39,23 @@ Test the Cloudflare version locally (uses `.dev.vars`, test mode, sends nothing)
 
     npm run build
     npx wrangler dev
+
+## Deploy to GoDaddy (Airo / Node.js app hosting)
+
+GoDaddy's app platform runs the same Node server (`server/index.js`) that serves `dist/` and handles `/api/enquiry`.
+Upload a clean bundle, not the whole project folder (that includes `.env`, `node_modules` and the source):
+
+    npm run bundle        # builds the site, then writes hosting-bundle.zip (pages + server + package.json, about 9 MB)
+
+1. In GoDaddy, open the app → **Update Preview** (or create the app) and upload **`hosting-bundle.zip`**.
+   The platform runs `npm install` and then `npm start`.
+2. In the app's **Manage Secrets / environment variables**, add the email settings (same names and values as `.env`):
+   `MAIL_TO`, `MAIL_FROM`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, and `SMTP_PASS` (the Gmail App Password).
+   Until they are set, the forms answer "Email is not configured yet" instead of sending.
+3. Restart the app, open the preview link while logged in to GoDaddy, send a test enquiry, then **Publish to Live**.
+4. If the page does not load, open **Runtime Logs**: the first lines show why the server did not start.
+
+Set `url` in `src/data.js` (`SITE.url`) to the final domain *before* running `npm run bundle`, so the canonical links and sitemap use it.
 
 ## Before launch
 

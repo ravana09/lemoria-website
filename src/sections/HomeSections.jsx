@@ -85,7 +85,7 @@ export function Personas() {
 }
 
 // Video tour: film in a fine gold frame, words on the right.
-const TOUR_TITLE = 'Inside Lemoria Luxe premium coworking space, Avinashi Road, Coimbatore';
+const TOUR_TITLE = 'Inside Lemoria Luxe premium coworking space, Gandhipuram, Coimbatore';
 const TOUR_FACTS = ['Reception & lounge', 'Private offices', 'Conference room', 'Focus cabins'];
 
 export function Tour() {

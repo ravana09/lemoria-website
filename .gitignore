@@ -7,3 +7,6 @@ dist
 .wrangler
 dist-server
 .mcp.json
+
+# upload bundles (they can contain .env and node_modules)
+*.zip
