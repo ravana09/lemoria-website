@@ -133,7 +133,7 @@ export default function Book() {
                     </div>
                     <input type="range" min="1" max={MAX_SEATS} value={seats} onChange={(e) => setSeats(Number(e.target.value))} aria-label="Number of seats" />
                   </div>
-                  <p className="hint">Bigger team? <Link to="/private-cabins">See our private offices</Link> or <Link to="/contact?type=Team seats (company)">talk to us</Link>.</p>
+                  <p className="hint">Bigger team? <Link to="/private-cabins">See our private offices</Link> or <Link to="/contact?type=Team seats">talk to us</Link>.</p>
                   <div className="seat-frame light-frame"><SeatMap count={seats} total={MAX_SEATS} /></div>
                 </fieldset>
                 <fieldset className="bk-step">

@@ -15,8 +15,8 @@ export const ROUTES = {
   '/about': ['About Lemoria Luxe | Coworking Space in Coimbatore', 'Lemoria Luxe is a premium coworking space and managed office on Gandhipuram, Coimbatore, created for founders, professionals and growing companies.'],
   '/contact': ['Contact & Book a Tour | Lemoria Luxe Coworking, Coimbatore', 'Visit Lemoria Luxe at SR Enclave, R. Chinnaswamy Naidu Street, New Siddhapudur, Coimbatore 641044. Call +91 73580 07200 or book a private tour.'],
   '/book': ['Book a Seat or Meeting Room Online | Lemoria Luxe', 'Reserve coworking seats or the conference room at Lemoria Luxe, Coimbatore. Choose your date online and we confirm within 2 business hours.'],
-  '/plans': ['Coworking Plans in Coimbatore | Lemoria Luxe', 'Flexible coworking plans at Lemoria Luxe, Coimbatore: flexi seats, dedicated seats, private offices and virtual offices. .'],
-  '/memberships': ['Coworking Plans in Coimbatore | Lemoria Luxe', 'Flexible coworking plans at Lemoria Luxe, Coimbatore: flexi seats, dedicated seats, private offices and virtual offices. .'],
+  '/plans': ['Coworking Plans in Coimbatore | Lemoria Luxe', 'Flexible coworking plans at Lemoria Luxe, Coimbatore: flexi seats, dedicated seats, private offices and virtual offices.'],
+  '/memberships': ['Coworking Plans in Coimbatore | Lemoria Luxe', 'Flexible coworking plans at Lemoria Luxe, Coimbatore: flexi seats, dedicated seats, private offices and virtual offices.'],
   '/gallery': ['Photos of Lemoria Luxe Coworking Space, Coimbatore', 'Take a look inside Lemoria Luxe premium coworking space on Gandhipuram, Coimbatore: the workspace, private offices and conference room.'],
 };
 export const NAMES = { '/workspace': 'Hot Desks & Dedicated Seats', '/private-cabins': 'Private Offices', '/conference-cabins': 'Conference Room', '/day-pass': 'Day Pass', '/virtual-office': 'Virtual Office', '/amenities': 'Amenities', '/faq': 'FAQ', '/about': 'About', '/contact': 'Contact', '/book': 'Book online', '/plans': 'Plans', '/memberships': 'Plans', '/gallery': 'Gallery' };

@@ -63,7 +63,7 @@ export function PlanGrid() {
   return (
     <div className="grid4">
       {PLANS.map((p) => {
-        const to = p.name === 'Virtual' ? '/contact?type=Virtual office' : p.name === 'Private Office' ? '/contact?type=Private cabin' : `/book?tab=seats&plan=${encodeURIComponent(p.name)}`;
+        const to = p.name === 'Virtual' ? '/contact?type=Virtual office' : p.name === 'Private Office' ? '/contact?type=Private office' : `/book?tab=seats&plan=${encodeURIComponent(p.name)}`;
         return (
           <div className={`plan ${p.popular ? 'pop' : ''}`} key={p.name}>
             {p.popular && <span className="tag">Most popular</span>}

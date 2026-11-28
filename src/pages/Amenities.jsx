@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import Icon from '../components/Icon.jsx';
 import { ArtBanner, CtaBand, Head } from '../components/Blocks.jsx';
 import { LoungeArt } from '../components/Illustrations.jsx';
@@ -8,7 +7,7 @@ import { AMENITIES, WA_LINK } from '../data.js';
 const byName = Object.fromEntries(AMENITIES);
 const GROUPS = [
   { title: 'Spaces',
-    items: ['Reception', 'Open workspace', '6 private offices', 'Conference room', '4 focus cabins', '2 phone booths', 'Informal meeting areas', 'Outdoor work area'] },
+    items: ['Reception', 'Open workspace', '10 private offices', 'Conference room', '6 focus cabins', '2 phone booths', 'Informal meeting areas', 'Outdoor work area'] },
   { title: 'Comfort',
     items: ['Pantry', 'Vending machine', 'Lockers', 'Washrooms'] },
   { title: 'Building & tech',

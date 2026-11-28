@@ -18,6 +18,20 @@ export const SITE = {
 export const MAP_EMBED = `https://www.google.com/maps?q=${SITE.geo.lat},${SITE.geo.lng}&z=17&output=embed`;
 export const MAP_LINK = SITE.mapsPlace;
 
+// ---- Lemoria spaces on the map ----
+// The first space is shown first. To add a new space later, add one more entry (name, area, address, geo, mapsUrl, status).
+// status: 'open' (Now open) · 'full' (Seats full) · 'soon' (Opening soon)
+export const LOCATIONS = [
+  { id: 'central', name: 'Lemoria Central', area: 'Gandhipuram', address: SITE.address, hours: SITE.hours,
+    geo: SITE.geo, mapsUrl: SITE.mapsPlace, status: 'open' },
+  { id: 'home', name: 'Lemoria Home', area: 'Avinashi Road', address: 'Coral Castle Apartments, 4D, Block 1, Avinashi Road, Peelamedu, Coimbatore, Tamil Nadu 641004',
+    hours: SITE.hours, // TODO: confirm the opening hours at Lemoria Home
+    geo: { lat: 11.0231336, lng: 76.9978753 }, mapsUrl: 'https://maps.app.goo.gl/wvnWv6zYcEt2WWe28', status: 'full' },
+];
+export const embedFor = ({ lat, lng }) => `https://www.google.com/maps?q=${lat},${lng}&z=17&output=embed`;
+export const directionsFor = (place) => place.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${place.geo.lat},${place.geo.lng}`;
+export const waFor = (text) => `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(text)}`;
+
 // Videos (stock clips from Mixkit for now). Replace the files in /public/videos with real Lemoria Luxe footage.
 export const VIDEOS = {
   hero: { src: '/videos/coworking-hero.mp4', poster: '/videos/coworking-hero.jpg' },
@@ -76,23 +90,23 @@ export const SPACES = {
     types: [
       { name: 'Hot Desk', image: IMG.community, desc: 'Any open seat in the workspace.' },
       { name: 'Dedicated Seat', image: IMG.desk, desc: 'Your own desk, every day.' },
-      { name: 'Focus Cabin', image: IMG.focus, desc: 'A quiet single-person cabin. 4 available.' },
+      { name: 'Focus Cabin', image: IMG.focus, desc: 'A quiet single-person cabin. 6 available.' },
     ],
-    facts: [['~50', 'Seats'], ['4', 'Focus cabins'], ['8 AM – 9 PM', 'Mon – Sat']],
+    facts: [['100', 'Seats'], ['6', 'Focus cabins'], ['8 AM – 9 PM', 'Mon – Sat']],
     cta: { label: 'Book seats', to: '/book?tab=seats' },
   },
   'private-cabins': {
     path: '/private-cabins', title: 'Private Offices', short: 'Offices', image: IMG.offices,
     alt: 'Private offices at Lemoria Luxe, Coimbatore', card: 'Fully managed private offices for teams of about 4 to 8.',
     tagline: 'A fully managed private office for your team, ready to move in.',
-    intro: 'Six beautifully furnished, fully managed private offices for teams of about 4 to 8. We take care of everything, so your team can focus on the work.',
+    intro: 'Ten beautifully furnished, fully managed private offices for teams of about 4 to 8. We take care of everything, so your team can focus on the work.',
     includes: ['Private, furnished office', 'Whiteboard', 'High-speed Wi-Fi', 'Conference room access', 'Reception for guests', 'Pantry & lockers'],
     types: [
       { name: 'Team Office', image: IMG.cabin, desc: 'For about 4 people.' },
       { name: 'Large Team Office', image: IMG.offices, desc: 'For about 6 to 8 people.' },
     ],
-    facts: [['6', 'Private offices'], ['4 – 8', 'People per office'], ['Fully', 'Managed']],
-    cta: { label: 'Enquire about an office', to: '/contact?type=Private cabin' },
+    facts: [['10', 'Private offices'], ['4 – 8', 'People per office'], ['Fully', 'Managed']],
+    cta: { label: 'Enquire about an office', to: '/contact?type=Private office' },
   },
   'conference-cabins': {
     path: '/conference-cabins', title: 'Conference Room', short: 'Meeting spaces', image: IMG.conference,
@@ -167,7 +181,7 @@ export const HOME = {
     kicker: 'Coimbatore · Gandhipuram · Now open',
     title: 'Luxury workspaces & private offices',
     accent: 'in the heart of Coimbatore.',
-    text: 'Designer desks, private offices and a boardroom for ambitious teams. .',
+    text: 'Designer desks, private offices and a boardroom for ambitious teams.',
     points: ['Elegant interiors', 'Flexible terms', 'Ready to move in'],
   },
   sections: {
@@ -179,9 +193,9 @@ export const HOME = {
   },
   // Approximate figures — keep them approximate.
   stats: [
-    { n: '~50', l: 'Seats', icon: 'chair' },
-    { n: '6', l: 'Private offices', icon: 'door' },
-    { n: '4', l: 'Focus cabins', icon: 'lock' },
+    { n: '100', l: 'Seats', icon: 'chair' },
+    { n: '10', l: 'Private offices', icon: 'door' },
+    { n: '6', l: 'Focus cabins', icon: 'lock' },
     { n: '8 AM – 9 PM', l: 'Mon – Sat', icon: 'clock' },
   ],
   // "Built for the way you work" — who Lemoria Luxe is for. Each card links to the best-fit workspace.
@@ -206,8 +220,8 @@ export const HOME = {
 
 // ---- Amenities: only what the Lemoria Luxe layout has (counts are approximate) ----
 export const AMENITIES = [
-  ['Reception', 'users'], ['Open workspace', 'chair'], ['6 private offices', 'door'], ['Conference room', 'present'],
-  ['4 focus cabins', 'lock'], ['2 phone booths', 'phone'], ['Informal meeting areas', 'sofa'], ['Outdoor work area', 'sun'],
+  ['Reception', 'users'], ['Open workspace', 'chair'], ['10 private offices', 'door'], ['Conference room', 'present'],
+  ['6 focus cabins', 'lock'], ['2 phone booths', 'phone'], ['Informal meeting areas', 'sofa'], ['Outdoor work area', 'sun'],
   ['Pantry', 'coffee'], ['Vending machine', 'water'], ['Lockers', 'lock'], ['Lift', 'lift'],
   ['Washrooms', 'check'], ['Whiteboards', 'board'], ['Server room', 'shield'], ['High-speed Wi-Fi', 'wifi'],
 ];
@@ -216,7 +230,7 @@ export const AMENITIES = [
 export const FAQ = [
   { q: 'Where is Lemoria Luxe located?', a: `Lemoria Luxe is a premium coworking space off Gandhipuram, at ${SITE.address}.` },
   { q: 'What workspaces does Lemoria Luxe offer?', a: 'Hot desks, dedicated seats, focus cabins, private offices, a conference room, day passes and virtual offices.' },
-  { q: 'How many seats does Lemoria Luxe have?', a: 'About 50 seats across the open workspace, 6 private offices, 4 focus cabins and an outdoor work area.' },
+  { q: 'How many seats does Lemoria Luxe have?', a: 'About 100 seats across our two spaces, Lemoria Central and Lemoria Home, including 10 private offices, 6 focus cabins and an outdoor work area.' },
   { q: 'Can I book just one seat?', a: 'Yes. Book a single seat for a day, a week or a month.' },
   { q: 'Can I book the conference room without a membership?', a: 'Yes. The conference room seats about 10 and can be booked by the hour by anyone.' },
   { q: 'How much does a coworking space in Coimbatore cost at Lemoria Luxe?', a: 'It depends on the workspace and the length of your plan. Send us an enquiry and we will share the price the same day.' },

@@ -1,12 +1,26 @@
 import { useState } from 'react';
 import { submitEnquiry } from '../api.js';
 import { SITE } from '../data.js';
+import NiceSelect from './NiceSelect.jsx';
 
-export const WORKSPACE_TYPES = ['Seats by the chair', 'Team seats (company)', 'Conference cabin', 'Private cabin', 'Day pass', 'Virtual office', 'Book a tour', 'General enquiry', 'Not sure yet'];
+// The workspace types in the dropdown. The label is what Lemoria sees in the email. "was" lists older names
+// that links may still use (e.g. /contact?type=Private cabin), so those links still pick the right option.
+export const WORKSPACE_TYPES = [
+  { label: 'Hot desk', icon: 'chair', note: 'One seat, daily or monthly', was: ['Seats by the chair'] },
+  { label: 'Team seats', icon: 'users', note: 'Several seats for your team', was: ['Team seats (company)'] },
+  { label: 'Conference room', icon: 'present', note: 'Seats about 10, by the hour', was: ['Conference cabin'] },
+  { label: 'Private office', icon: 'door', note: 'For teams of about 4 to 8', was: ['Private cabin'] },
+  { label: 'Day pass', icon: 'sun', note: 'One full day, 8 AM to 9 PM' },
+  { label: 'Virtual office', icon: 'mail', note: 'Business address and mail' },
+  { label: 'Book a tour', icon: 'calendar', note: 'Visit and see the space' },
+  { label: 'General question', icon: 'book', note: 'Anything else', was: ['General enquiry'] },
+  { label: 'Not sure yet', icon: 'star', note: 'We will help you choose' },
+];
+const typeFor = (preset) => (WORKSPACE_TYPES.find((t) => t.label === preset || (t.was || []).includes(preset)) || WORKSPACE_TYPES[0]).label;
 
 // Sends the enquiry to the server, which emails Lemoria Luxe and sends the visitor a confirmation email.
 export default function ContactForm({ preset = '', title, className = '' }) {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', type: WORKSPACE_TYPES.includes(preset) ? preset : WORKSPACE_TYPES[0], message: '', website: '' });
+  const [form, setForm] = useState({ name: '', email: '', phone: '', type: typeFor(preset), message: '', website: '' });
   const [errors, setErrors] = useState({});
   const [state, setState] = useState('idle');
   const [result, setResult] = useState(null);
@@ -50,8 +64,8 @@ export default function ContactForm({ preset = '', title, className = '' }) {
         {f('name', 'Full name', { type: 'text', autoComplete: 'name', placeholder: 'Enter your name' })}
         {f('email', 'Email address', { type: 'email', autoComplete: 'email', placeholder: 'Enter your email' })}
         {f('phone', 'Phone number', { type: 'tel', autoComplete: 'tel', placeholder: '+91' })}
-        <div className="field"><label htmlFor="cf-type">Workspace type</label>
-          <select id="cf-type" value={form.type} onChange={set('type')}>{WORKSPACE_TYPES.map((t) => <option key={t}>{t}</option>)}</select>
+        <div className="field">
+          <NiceSelect id="cf-type" label="Workspace type" options={WORKSPACE_TYPES} value={form.type} onChange={(type) => setForm((x) => ({ ...x, type }))} />
         </div>
         <div className="field full"><label htmlFor="cf-msg">Message</label><textarea id="cf-msg" rows="3" value={form.message} onChange={set('message')} placeholder="How many seats do you need, and from when?" /></div>
         {/* honeypot: hidden from people, bots fill it in and are ignored */}

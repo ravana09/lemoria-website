@@ -1,12 +1,13 @@
 // Home page sections (the designs chosen from the preview round).
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Img from '../components/Img.jsx';
 import Icon from '../components/Icon.jsx';
 import Sec from '../components/Sec.jsx';
 import { BgVideo, LoopVideo } from '../components/Video.jsx';
 import QuickEnquiry from '../components/QuickEnquiry.jsx';
-import MapFrame from '../components/MapFrame.jsx';
-import { AMENITIES, HOME, MAP_LINK, SITE, SPACES, VIDEOS } from '../data.js';
+import PlacesMap from '../components/PlacesMap.jsx';
+import { AMENITIES, HOME, LOCATIONS, SPACES, VIDEOS, directionsFor, waFor } from '../data.js';
 
 const CARDS = ['workspace', 'private-cabins', 'conference-cabins', 'day-pass', 'virtual-office'].map((id) => SPACES[id]);
 const pad = (i) => String(i + 1).padStart(2, '0');
@@ -23,8 +24,18 @@ function Title({ kicker, title, text, center, light }) {
 
 // Hero: film behind, words left, quote form right. On phones the film fills the screen behind the words
 // and the form follows underneath (see .hv in home.css).
+// Opens a space on the map: scrolls down to the map section and selects that space there.
+export function showPlace(i) {
+  window.dispatchEvent(new CustomEvent('lemoria:place', { detail: i }));
+  const map = document.getElementById('sec-location');
+  if (map) window.scrollTo({ top: map.getBoundingClientRect().top + window.scrollY - 76, behavior: 'smooth' });
+}
+// Hero: film behind, words left, quote form right. Under the words, a large "02" tells visitors there are two
+// Lemoria spaces; each area name opens that space on the map. On phones the film fills the screen behind the
+// words and the form follows underneath (see .hv in home.css).
 export function Hero() {
   const h = HOME.hero;
+  const n = LOCATIONS.length;
   return (
     <section className="hv" id="sec-hero">
       <div className="hv-media">
@@ -33,10 +44,16 @@ export function Hero() {
       </div>
       <div className="container hv-in">
         <div className="hv-copy">
-          <span className="kicker light">{h.kicker}</span>
+          <span className="kicker light">{`Coimbatore · ${n} ${n === 1 ? 'space' : 'spaces'} · Now open`}</span>
           <h1>{h.title} <span className="hv-accent">{h.accent}</span></h1>
           <p>{h.text}</p>
-          <ul className="hv-points">{h.points.map((pt) => <li key={pt}><Icon name="check" size={18} />{pt}</li>)}</ul>
+          <div className="hvs-count">
+            <b>{String(n).padStart(2, '0')}</b>
+            <div>
+              <span>Lemoria spaces in Coimbatore</span>
+              <p>{LOCATIONS.map((p, i) => <button key={p.id} type="button" onClick={() => showPlace(i)}>{p.area}</button>)}</p>
+            </div>
+          </div>
         </div>
         <QuickEnquiry />
       </div>
@@ -134,20 +151,61 @@ export function Steps() {
   );
 }
 
-// Location: full-width map with the details on a card over it.
-export function Location() {
-  const s = HOME.sections.location;
+// Location: one map per Lemoria space. The space names sit as chips in the centre of the map, the chosen space's
+// details on a card on the left; choosing a space moves the map there (components/PlacesMap.jsx).
+const STATUS = { open: 'Now open', full: 'Seats full', soon: 'Opening soon' };
+const Status = ({ s }) => <span className={`pl-status is-${s}`}><i aria-hidden="true" />{STATUS[s]}</span>;
+
+function PlaceButtons({ place }) {
+  const ask = place.status === 'full'
+    ? { label: 'Ask about availability', text: `Hi Lemoria, are any seats available at ${place.name}?` }
+    : place.status === 'soon' ? { label: 'Get notified', text: `Hi Lemoria, please let me know when ${place.name} opens.` } : null;
   return (
-    <section className="loc2" id="sec-location">
-      <MapFrame className="loc2-map" />
+    <div className="btns lc-btns">
+      <a className="btn btn-primary" href={directionsFor(place)} target="_blank" rel="noreferrer"><Icon name="pin" size={18} /> Get directions</a>
+      {ask && <a className="btn btn-outline" href={waFor(ask.text)} target="_blank" rel="noreferrer"><Icon name="whatsapp" size={18} /> {ask.label}</a>}
+    </div>
+  );
+}
+
+export function Location() {
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    const onPlace = (e) => setActive(Number(e.detail) || 0);
+    window.addEventListener('lemoria:place', onPlace);
+    return () => window.removeEventListener('lemoria:place', onPlace);
+  }, []);
+  const p = LOCATIONS[active];
+  // On phones, bring the map back into view when a space is chosen, so the move can be seen.
+  const choose = (i) => {
+    setActive(i);
+    if (window.innerWidth > 900) return;
+    const map = document.querySelector('#sec-location .pm');
+    const top = map && map.getBoundingClientRect().top;
+    if (map && (top < 60 || top > window.innerHeight * 0.5)) window.scrollTo({ top: top + window.scrollY - 76, behavior: 'smooth' });
+  };
+  return (
+    <section className="loc2 lc" id="sec-location">
+      <PlacesMap places={LOCATIONS} active={active} className="loc2-map" />
       <div className="container loc2-wrap">
-        <div className="loc2-card">
-          <Title kicker={s.kicker} title={s.title} />
-          <ul className="info-list">
-            <li><span className="icbox"><Icon name="pin" size={22} /></span><div><small>Address</small><span>{SITE.address}</span></div></li>
-            <li><span className="icbox"><Icon name="clock" size={22} /></span><div><small>Open</small><span>{SITE.hours}</span></div></li>
-          </ul>
-          <a className="btn btn-primary" href={MAP_LINK} target="_blank" rel="noreferrer"><Icon name="pin" size={18} /> Get directions</a>
+        <div className="lc7">
+          {LOCATIONS.length > 1 && (
+            <div className="lc-chips" role="group" aria-label="Lemoria spaces">
+              {LOCATIONS.map((x, i) => <button key={x.id} type="button" aria-pressed={i === active} onClick={() => choose(i)}>{x.name}</button>)}
+            </div>
+          )}
+          <div className="loc2-card">
+            <div key={p.id} className="lc-swap">
+              <span className="kicker">{p.area}</span>
+              <h2 className="lc-name">{p.name}</h2>
+              <p className="lc-meta"><Status s={p.status} /></p>
+              <ul className="info-list">
+                <li><span className="icbox"><Icon name="pin" size={22} /></span><div><small>Address</small><span>{p.address}</span></div></li>
+                {p.hours && <li><span className="icbox"><Icon name="clock" size={22} /></span><div><small>Open</small><span>{p.hours}</span></div></li>}
+              </ul>
+              <PlaceButtons place={p} />
+            </div>
+          </div>
         </div>
       </div>
     </section>
